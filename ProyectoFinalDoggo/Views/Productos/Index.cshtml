@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ProyectoFinalDoggo.Models.Productos>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/DoggoLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Agregar", "Guardar")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nomProducto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.precio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Categoria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.detalles)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cantidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.imagen)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nomProducto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.precio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Categoria)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.detalles)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cantidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.imagen)
+        </td>
+        <td>
+            @Html.ActionLink("Modificar", "Modificar", new { id=item.IDProd }) |
+            @Html.ActionLink("Detalle", "Detalle", new { id=item.IDProd }) |
+            @Html.ActionLink("Eliminar", "Eliminar", new { id=item.IDProd })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,70 @@
+﻿@model IEnumerable<ProyectoFinalDoggo.Models.Usuarios>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/DoggoLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Agregar", "Guardar")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.pass)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.correo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.direccion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.telefono)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.rol)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.apellido)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.pass)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.correo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.direccion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.telefono)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.rol)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.apellido)
+        </td>
+        <td>
+            @Html.ActionLink("Modificar", "Modificar", new { id=item.usuario }) |
+            @Html.ActionLink("Detalle", "Detalle", new { id=item.usuario }) |
+            @Html.ActionLink("Eliminar", "Eliminar", new { id=item.usuario })
+        </td>
+    </tr>
+}
+
+</table>

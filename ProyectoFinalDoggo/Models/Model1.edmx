@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="g5_ProyectoFinalDoggoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="compras">
+          <Key>
+            <PropertyRef Name="IDTrans" />
+          </Key>
+          <Property Name="IDTrans" Type="int" Nullable="false" />
+          <Property Name="IDProd" Type="int" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="COSTO" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="Productos">
+          <Key>
+            <PropertyRef Name="IDProd" />
+          </Key>
+          <Property Name="IDProd" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nomProducto" Type="varchar" MaxLength="255" />
+          <Property Name="precio" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Categoria" Type="varchar" MaxLength="255" />
+          <Property Name="detalles" Type="varchar" MaxLength="255" />
+          <Property Name="cantidad" Type="int" />
+          <Property Name="imagen" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="usuario" />
+          </Key>
+          <Property Name="usuario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="pass" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="correo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="direccion" Type="varchar" MaxLength="100" />
+          <Property Name="telefono" Type="varchar" MaxLength="8" />
+          <Property Name="rol" Type="varchar" MaxLength="6" />
+          <Property Name="nombre" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="apellido" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_compras_productos">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="compras" Type="Self.compras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="IDProd" />
+            </Principal>
+            <Dependent Role="compras">
+              <PropertyRef Name="IDProd" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_compras_usuario">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="compras" Type="Self.compras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="usuario" />
+            </Principal>
+            <Dependent Role="compras">
+              <PropertyRef Name="usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="g5_ProyectoFinalDoggoModelStoreContainer">
+          <EntitySet Name="compras" EntityType="Self.compras" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_compras_productos" Association="Self.fk_compras_productos">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="compras" EntitySet="compras" />
+          </AssociationSet>
+          <AssociationSet Name="fk_compras_usuario" Association="Self.fk_compras_usuario">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="compras" EntitySet="compras" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="g5_ProyectoFinalDoggoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="compras">
+          <Key>
+            <PropertyRef Name="IDTrans" />
+          </Key>
+          <Property Name="IDTrans" Type="Int32" Nullable="false" />
+          <Property Name="IDProd" Type="Int32" Nullable="false" />
+          <Property Name="usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="COSTO" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="Productos" Relationship="Self.fk_compras_productos" FromRole="compras" ToRole="Productos" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.fk_compras_usuario" FromRole="compras" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Productos">
+          <Key>
+            <PropertyRef Name="IDProd" />
+          </Key>
+          <Property Name="IDProd" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nomProducto" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="precio" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Categoria" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="detalles" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad" Type="Int32" />
+          <Property Name="imagen" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="compras" Relationship="Self.fk_compras_productos" FromRole="Productos" ToRole="compras" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="usuario" />
+          </Key>
+          <Property Name="usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pass" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="rol" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="compras" Relationship="Self.fk_compras_usuario" FromRole="Usuarios" ToRole="compras" />
+        </EntityType>
+        <Association Name="fk_compras_productos">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="compras" Type="Self.compras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="IDProd" />
+            </Principal>
+            <Dependent Role="compras">
+              <PropertyRef Name="IDProd" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_compras_usuario">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="compras" Type="Self.compras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="usuario" />
+            </Principal>
+            <Dependent Role="compras">
+              <PropertyRef Name="usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="g5_ProyectoFinalDoggoEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="compras" EntityType="Self.compras" />
+          <EntitySet Name="Productos" EntityType="Self.Productos" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <AssociationSet Name="fk_compras_productos" Association="Self.fk_compras_productos">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="compras" EntitySet="compras" />
+          </AssociationSet>
+          <AssociationSet Name="fk_compras_usuario" Association="Self.fk_compras_usuario">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="compras" EntitySet="compras" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="g5_ProyectoFinalDoggoModelStoreContainer" CdmEntityContainer="g5_ProyectoFinalDoggoEntities2">
+          <EntitySetMapping Name="compras">
+            <EntityTypeMapping TypeName="g5_ProyectoFinalDoggoModel.compras">
+              <MappingFragment StoreEntitySet="compras">
+                <ScalarProperty Name="IDTrans" ColumnName="IDTrans" />
+                <ScalarProperty Name="IDProd" ColumnName="IDProd" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="COSTO" ColumnName="COSTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Productos">
+            <EntityTypeMapping TypeName="g5_ProyectoFinalDoggoModel.Productos">
+              <MappingFragment StoreEntitySet="Productos">
+                <ScalarProperty Name="IDProd" ColumnName="IDProd" />
+                <ScalarProperty Name="nomProducto" ColumnName="nomProducto" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="detalles" ColumnName="detalles" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="g5_ProyectoFinalDoggoModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="rol" ColumnName="rol" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
