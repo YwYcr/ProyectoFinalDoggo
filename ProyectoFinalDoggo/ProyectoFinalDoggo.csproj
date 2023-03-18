@@ -130,7 +130,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="clases\Producto.cs" />
+    <Compile Include="clases\Compra.cs" />
     <Compile Include="clases\Usuario.cs" />
+    <Compile Include="Controllers\ComprasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
@@ -228,6 +230,11 @@
     <Content Include="Views\Usuarios\Guardar.cshtml" />
     <Content Include="Views\Usuarios\Modificar.cshtml" />
     <Content Include="Views\Usuarios\Detalle.cshtml" />
+    <Content Include="Views\Compras\Eliminar.cshtml" />
+    <Content Include="Views\Compras\Guardar.cshtml" />
+    <Content Include="Views\Compras\Modificar.cshtml" />
+    <Content Include="Views\Compras\Detalle.cshtml" />
+    <Content Include="Views\Compras\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

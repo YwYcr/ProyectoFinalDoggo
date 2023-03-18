@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ProyectoFinalDoggo.Models.compras>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/DoggoLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.COSTO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Productos.nomProducto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuarios.pass)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.COSTO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Productos.nomProducto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuarios.pass)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDTrans }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDTrans }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDTrans })
+        </td>
+    </tr>
+}
+
+</table>

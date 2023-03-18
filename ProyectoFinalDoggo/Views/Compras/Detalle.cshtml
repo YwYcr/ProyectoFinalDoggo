@@ -1,0 +1,43 @@
+﻿@model ProyectoFinalDoggo.Models.compras
+
+@{
+    ViewBag.Title = "Detalle";
+    Layout = "~/Views/Shared/DoggoLayout.cshtml";
+}
+
+<h2>Detalle</h2>
+
+<div>
+    <h4>compras</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.COSTO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.COSTO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Productos.nomProducto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Productos.nomProducto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuarios.pass)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuarios.pass)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDTrans }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
