@@ -23,6 +23,7 @@ CREATE TABLE productos (
   detalles VARCHAR(255),
   cantidad INT
 );
+ALTER TABLE productos ADD imagen varchar(200);
 
 CREATE TABLE compras (
   IDTrans INT NOT NULL, 

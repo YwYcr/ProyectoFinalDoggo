@@ -1,48 +1,108 @@
-﻿<!DOCTYPE html>
-<html>
+﻿@*<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title Doggo </title>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+    <body>
+            <div class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        @Html.ActionLink("Doggo", "Inicio", "Producto", new { area = "" }, new { @class = "navbar-brand" })
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Inicio", "Index", "Productos")</li>
+                            <li>@Html.ActionLink("Usuarios", "Index", "Usuarios")</li>
+                            <li>@Html.ActionLink("Compras", "Index", "Compras")</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="container body-content">
+                <div class="bg-welcome">
+                    <img class="bg-welcome" src="~/images/Loggo banner.jpg" />
+                </div>
+                @RenderBody()
+
+                <hr />
+                <footer>
+                    <p>&copy; @DateTime.Now.Year - Doggo </p>
+                </footer>
+            </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </body>
+    </html>*@
+
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title Doggo </title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <meta charset="UTF-8">
+    <title>My Bootstrap Layout</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Customize styles -->
+    <link href="~/Content/CustomLayout.css" rel="stylesheet" />
 </head>
 <body>
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    @Html.ActionLink("Doggo", "Inicio", "Producto", new { area = "" }, new { @class = "navbar-brand" })
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Inicio", "Index", "Productos")</li>
-                        <li>@Html.ActionLink("Usuarios", "Index", "Usuarios")</li>
-                        <li>@Html.ActionLink("Compras", "Index", "Compras")</li>
-                    </ul>
-                </div>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a href="@Url.Action("Index", "Productos")" class="LogoButton">
+                <img src="~/images/Logo DOGGO (fondo negro).jpg" />
+            </a>
+
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        @Html.ActionLink("Inicio", "Index", "Productos", null, new { @class = "nav-link text-dark" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Usuarios", "Index", "Usuarios", null, new { @class = "nav-link text-dark" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Compras", "Index", "Compras", null, new { @class = "nav-link text-dark" })
+                    </li>
+                </ul>
             </div>
         </div>
-       
+    </nav>
 
-        <div class="container body-content">
-            <div class="bg-welcome">
-                <img class="bg-welcome" src="~/images/Loggo banner.jpg" />
-            </div>
-            @RenderBody()
+    <div id="slideshow">
+        <img src="~/images/img1.jpg" />
+        <img src="~/images/img2.jpg" />
+        <img src="~/images/img3.jpg" />
+    </div>
 
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - Doggo </p>
-            </footer>
-        </div>
+    <!-- Page content -->
+    <div class="container mt-4">
+        @RenderBody()
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    </div>
+    @RenderSection("Scripts", required: false)
 </body>
-</html>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2023 - Doggo.</p>
+    </footer>
+    <script src="~/Scripts/LayoutScripts.js"></script>
