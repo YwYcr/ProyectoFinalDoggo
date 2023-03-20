@@ -3,13 +3,20 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/DoggoLayout.cshtml";
+
+    if (Session["Usuario"] == null)
+    {
+        Response.Redirect("~/Login/Login");
+    }
+
 }
-
-<h2>Productos</h2>
-
 <p>
     @Html.ActionLink("Agregar", "Guardar")
 </p>
+<div>
+    <h3>Usuario: @Session["Usuario"].ToString()</h3>
+    <a href="@Url.Action("LogOut","Login")">Salir</a>
+</div>
 <table class="table">
     <tr>
         <th>
