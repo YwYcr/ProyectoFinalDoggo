@@ -2,10 +2,10 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/Login-theme.css")
-    @Styles.Render("~/Scripts/Login.js")
+    @Scripts.Render("~/Scripts/Login.js")
 </head>
 <body>
     <div class="form-structor">
@@ -21,6 +21,7 @@
                 <input type="password" class="input" placeholder="Password" />
                 <button class="submit-btn">Registrarse</button>
             </div>
+        </div>
         <div class="login slide-up">
             <div class="center">
                 <h2 class="form-title" id="login"><span>or</span>Ingresar</h2>

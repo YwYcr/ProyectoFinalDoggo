@@ -60,6 +60,7 @@ namespace ProyectoFinalDoggo.Controllers
         public ActionResult Cambiar(Usuarios modelo)
         {
             usuario.Modificar(modelo);
+            modelo.pass = usuario.Consulta(modelo.usuario).pass;
             ViewBag.valor = " ";
             return View("Modificar", modelo);
         }

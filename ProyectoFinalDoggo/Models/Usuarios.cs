@@ -21,12 +21,13 @@ namespace ProyectoFinalDoggo.Models
         {
             this.compras = new HashSet<compras>();
         }
-    
-        public string usuario { get; set; }
+
         [Required(ErrorMessage = "Dato requerido")]
-        public string pass { get; set; }
+        public string usuario { get; set; }
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "Dato requerido")]
+        public string pass { get; set; }
+        
         public string correo { get; set; }
         public string direccion { get; set; }
         public string telefono { get; set; }

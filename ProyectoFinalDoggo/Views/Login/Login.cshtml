@@ -1,14 +1,11 @@
 ﻿@model ProyectoFinalDoggo.Models.Usuarios
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/LoginView.cshtml";
+}
 
-@{ ViewBag.Title = "Login";
-                Layout = "~/Views/Shared/LoginView.cshtml"; }
+<h2>Login</h2>
 
-<h2>Index</h2>
-
-<!DOCTYPE html>
-
-
-<html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Login</title>
@@ -18,48 +15,44 @@
     <div id="login slide-up">
         @using (Html.BeginForm("Autherize", "Login", FormMethod.Post))
         {
-<table>
-    <tr>
-        <td></td>
-        <td style="text-decoration:underline">Doggo</td>
-    </tr>
-    <h2 class="form-title" id="login"><span></span>Inicio de Sesión</h2>
-    <tr>
-        <td>
-            @Html.LabelFor(Model => Model.usuario)
-        </td>
-        <td>
-            @Html.EditorFor(Model => Model.usuario)
-        </td>
-    </tr>
-    <tr>
-        <td></td>
-        <td>@Html.ValidationMessageFor(Model => Model.usuario)</td>
-    </tr>
-    <tr>
-        <td>@Html.LabelFor(Model => Model.pass)</td>
-        <td>@Html.EditorFor(Model => Model.pass)</td>
-    </tr>
-    <tr>
-        <td></td>
-        <td>@Html.ValidationMessageFor(Model => Model.pass)</td>
-    </tr>
-        <td colspan="2">
-            <label class="field-validation-erorr">@Html.DisplayFor(Model => Model.LoginErrorMessage) </label>
-        </td>
-    <tr>
-        <td></td>
-        <td>
-            <button class="submit-btn">Ingresar</button>
-        </td>
-    </tr>
-</table>}
+            <table>
+                <tr>
+                    <td></td>
+                    <td style="text-decoration:underline">Doggo</td>
+                </tr>
+                <h2 class="form-title" id="login"><span></span>Inicio de Sesión</h2>
+                <tr>
+                    <td>
+                        @Html.LabelFor(Model => Model.usuario)
+                    </td>
+                    <td>
+                        @Html.EditorFor(Model => Model.usuario)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(Model => Model.usuario)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(Model => Model.pass)</td>
+                    <td>@Html.EditorFor(Model => Model.pass)</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(Model => Model.pass)</td>
+                </tr>
+                <td colspan="2">
+                    <label class="field-validation-erorr">@Html.DisplayFor(Model => Model.LoginErrorMessage) </label>
+                </td>
+                <tr>
+                    <td></td>
+                    <td>
+                        <button class="submit-btn">Ingresar</button>
+                    </td>
+                </tr>
+            </table>}
     </div>
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 </body>
-</html>
-
-
-
