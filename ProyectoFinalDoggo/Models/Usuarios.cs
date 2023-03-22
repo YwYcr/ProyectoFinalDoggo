@@ -26,8 +26,7 @@ namespace ProyectoFinalDoggo.Models
         [Required(ErrorMessage = "Dato requerido")]
         
         public string usuario { get; set; }
-        [DataType(DataType.Password)]
-        [Required(ErrorMessage = "Dato requerido")]
+        [Required(ErrorMessage = "Dato requerido1")]
         public string pass { get; set; }
         
         public string correo { get; set; }

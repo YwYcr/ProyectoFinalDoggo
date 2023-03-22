@@ -3,9 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ProyectoFinalDoggo.clases
 {
@@ -38,13 +41,17 @@ namespace ProyectoFinalDoggo.clases
                     db.SaveChanges();
                 }
             }
-            catch (DbUpdateException ex)
+            catch (DbEntityValidationException dbEx)
             {
-
-            }
-            catch (Exception ex)
-            {
-
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        Trace.TraceInformation("Property: {0} Error: {1}",
+                            validationError.PropertyName,
+                            validationError.ErrorMessage);
+                    }
+                }
             }
         }
 
@@ -59,14 +66,29 @@ namespace ProyectoFinalDoggo.clases
                     db.SaveChanges();
 
                 }
-            } catch (Exception e)
+
+
+            }
+            catch (DbEntityValidationException dbEx)
             {
-
-            };
-
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        Trace.TraceInformation("Property: {0} Error: {1}",
+                            validationError.PropertyName,
+                            validationError.ErrorMessage);
+                    }
+                }
+            }
         }
 
-        public Usuarios Consulta(string id)
+
+
+
+
+
+            public Usuarios Consulta(string id)
         {
             using (g5_ProyectoFinalDoggoEntities2 db = new g5_ProyectoFinalDoggoEntities2())
             {
