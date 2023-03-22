@@ -39,7 +39,7 @@
                     </tr>
                     <tr>
                         <td>@Html.LabelFor(Model => Model.pass)</td>
-                        <td>@Html.EditorFor(Model => Model.pass)</td>
+                        <td>@Html.EditorFor(Model => Model.pass, new { htmlAttributes = new { type = "password" } })</td>
                     </tr>
                     <tr>
                         <td></td>

@@ -31,9 +31,7 @@
         <th>
             Rol
         </th>
-        <th>
-            Password
-        </th>
+
         <th></th>
     </tr>
 
@@ -57,9 +55,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.rol)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.pass)
-        </td>
+
         <td>
             @Html.ActionLink("Modificar", "Modificar", new { id = item.usuario }) |
             @Html.ActionLink("Detalle", "Detalle", new { id = item.usuario }) |
