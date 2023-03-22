@@ -1,51 +1,4 @@
-﻿@*<!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>@ViewBag.Title Doggo </title>
-        @Styles.Render("~/Content/css")
-        @Scripts.Render("~/bundles/modernizr")
-    </head>
-    <body>
-            <div class="navbar navbar-inverse navbar-fixed-top">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        @Html.ActionLink("Doggo", "Inicio", "Producto", new { area = "" }, new { @class = "navbar-brand" })
-                    </div>
-                    <div class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav">
-                            <li>@Html.ActionLink("Inicio", "Index", "Productos")</li>
-                            <li>@Html.ActionLink("Usuarios", "Index", "Usuarios")</li>
-                            <li>@Html.ActionLink("Compras", "Index", "Compras")</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="container body-content">
-                <div class="bg-welcome">
-                    <img class="bg-welcome" src="~/images/Loggo banner.jpg" />
-                </div>
-                @RenderBody()
-
-                <hr />
-                <footer>
-                    <p>&copy; @DateTime.Now.Year - Doggo </p>
-                </footer>
-            </div>
-
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", required: false)
-    </body>
-    </html>*@
+﻿
 
 
 <!DOCTYPE html>
@@ -73,13 +26,24 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        @Html.ActionLink("Inicio", "Index", "Productos", null, new { @class = "nav-link text-dark" })
+                        @Html.ActionLink("Inicio", "Index", "Productos", null, new { @class = "nav-item nav-link active btn btn-link" })
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Usuarios", "Index", "Usuarios", null, new { @class = "nav-link text-dark" })
+                        @Html.ActionLink("Usuarios", "Index", "Usuarios", null, new { @class = "nav-item nav-link active btn btn-link" })
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Compras", "Index", "Compras", null, new { @class = "nav-link text-dark" })
+                        @Html.ActionLink("Compras", "Index", "Compras", null, new { @class = "nav-item nav-link active btn btn-link" })
+                    </li>
+                    <li>
+                        @if (Session != null && Session["usuario"] != null)
+                        {
+                            <p class="nav-link text-dark">Usuario: @Session["usuario"].ToString()</p>
+                            @*<a href="@Url.Action("Logout","Login")">salir</a>*@
+                        }
+                        else
+                        {
+                            <p>No hay sesión iniciada</p>
+                        }
                     </li>
                 </ul>
             </div>

@@ -10,20 +10,12 @@
     }
 
 }
+
+<h3>Productos</h3>
 <p>
     @Html.ActionLink("Agregar", "Guardar")
 </p>
-<div>
-    @if (Session != null && Session["usuario"] != null)
-    {
-        <h3>usuario: @Session["usuario"].ToString()</h3>
-        <a href="@Url.Action("logout","login")">salir</a>
-    }
-    else
-    {
-        <p>No hay sesión iniciada</p>
-    }
-</div>
+ 
 
 <table class="table">
     <tr>

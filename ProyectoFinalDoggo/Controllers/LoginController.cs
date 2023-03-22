@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -32,11 +33,25 @@ namespace ProyectoFinalDoggo.Controllers
                 }
             }
         }
-        public ActionResult LogOut()
+        public ActionResult Logout()
         {
-            int Usuario = (int)Session["Usuario"];
-            Session.Abandon();
-            return RedirectToAction("Index", "Login");
+            using (var db = new g5_ProyectoFinalDoggoEntities2())
+            {
+                if (Session != null && Session["usuario"] != null)
+                {
+                    // Get the current user from the database
+                    var currentUser = db.Usuarios.FirstOrDefault(u => u.usuario == Session["usuario"].ToString());
+
+                    // Clear the session
+                    Session.Clear();
+
+                    // Save changes to the database
+                    db.SaveChanges();
+                }
+
+                // Redirect to the login page
+                return RedirectToAction("Index", "Login");
+            }
         }
     }
 }
