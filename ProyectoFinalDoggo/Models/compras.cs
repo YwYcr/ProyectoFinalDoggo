@@ -16,6 +16,8 @@ namespace ProyectoFinalDoggo.Models
     {
         public int IDTrans { get; set; }
         public int IDProd { get; set; }
+
+        public string NomProducto { get; set; }
         public string usuario { get; set; }
         public Nullable<decimal> COSTO { get; set; }
     

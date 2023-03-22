@@ -4,19 +4,27 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/DoggoLayout.cshtml";
 
-    //if (Session["Usuario"] == null)
-    //{
-    //    Response.Redirect("~/Login/Login");
-    //}
+    if (Session["Usuario"] == null)
+    {
+        Response.Redirect("~/Login/index");
+    }
 
 }
 <p>
     @Html.ActionLink("Agregar", "Guardar")
 </p>
-@*<div>
-    <h3>Usuario: @Session["Usuario"].ToString()</h3>
-    <a href="@Url.Action("LogOut","Login")">Salir</a>
-</div>*@
+<div>
+    @if (Session != null && Session["usuario"] != null)
+    {
+        <h3>usuario: @Session["usuario"].ToString()</h3>
+        <a href="@Url.Action("logout","login")">salir</a>
+    }
+    else
+    {
+        <p>No hay sesión iniciada</p>
+    }
+</div>
+
 <table class="table">
     <tr>
         <th>
@@ -40,32 +48,33 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nomProducto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.precio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Categoria)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.detalles)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.cantidad)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.imagen)
-        </td>
-        <td>
-            @Html.ActionLink("Modificar", "Modificar", new { id=item.IDProd }) |
-            @Html.ActionLink("Detalle", "Detalle", new { id=item.IDProd }) |
-            @Html.ActionLink("Eliminar", "Eliminar", new { id=item.IDProd })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nomProducto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categoria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.detalles)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cantidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.imagen)
+            </td>
+            <td>
+                @Html.ActionLink("Modificar", "Modificar", new { id = item.IDProd }) |
+                @Html.ActionLink("Detalle", "Detalle", new { id = item.IDProd }) |
+                @Html.ActionLink("Eliminar", "Eliminar", new { id = item.IDProd })
+            </td>
+        </tr>
+    }
 
 </table>

@@ -61,7 +61,7 @@ namespace ProyectoFinalDoggo.Controllers
         {
             producto.Modificar(modelo);
             ViewBag.valor = " ";
-            return View("Modificar", modelo);
+            return RedirectToAction("Index");
         }
 
         public ActionResult Detalle(int id)

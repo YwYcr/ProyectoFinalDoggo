@@ -1,15 +1,13 @@
 ﻿@import url("https://fonts.googleapis.com/css?family=Fira+Sans");
 
-html, body {
-    position: relative;
-    min-height: 100vh;
-    background-color: #E1E8EE;
+body {
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: "Fira Sans", Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1520' height='780' preserveAspectRatio='none' viewBox='0 0 1520 780'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1161%26quot%3b)' fill='none'%3e%3crect width='1520' height='780' x='0' y='0' fill='rgba(113%2c 78%2c 78%2c 1)'%3e%3c/rect%3e%3cpath d='M420.769%2c315.642C469.962%2c314.256%2c500.724%2c267.638%2c523.729%2c224.133C544.829%2c184.229%2c557.459%2c137.883%2c535.668%2c98.352C513.232%2c57.65%2c467.236%2c38.263%2c420.769%2c37.349C372.444%2c36.398%2c322.276%2c52.014%2c297.76%2c93.669C272.954%2c135.817%2c283.543%2c187.453%2c307.248%2c230.23C331.85%2c274.624%2c370.034%2c317.071%2c420.769%2c315.642' fill='rgba(253%2c 253%2c 253%2c 1)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M1125.325%2c1040.371C1208.702%2c1045.093%2c1286.625%2c992.384%2c1324.438%2c917.924C1359.273%2c849.329%2c1338.186%2c768.755%2c1295.902%2c704.484C1258.104%2c647.031%2c1194.068%2c613.287%2c1125.325%2c615.275C1059.93%2c617.166%2c1003.832%2c657.279%2c971.022%2c713.879C938.101%2c770.67%2c933.738%2c838.036%2c961.787%2c897.385C994.949%2c967.553%2c1047.839%2c1035.983%2c1125.325%2c1040.371' fill='rgba(253%2c 253%2c 253%2c 1)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M1289.554%2c256.394C1347.38%2c258.01%2c1404.302%2c232.371%2c1433.639%2c182.513C1463.362%2c131.999%2c1458.372%2c69.532%2c1429.524%2c18.513C1400.183%2c-33.378%2c1349.037%2c-68.392%2c1289.554%2c-72.31C1222.021%2c-76.759%2c1145.185%2c-62.123%2c1113.53%2c-2.303C1082.98%2c55.428%2c1122.026%2c120.832%2c1158.77%2c174.833C1189.747%2c220.359%2c1234.509%2c254.856%2c1289.554%2c256.394' fill='rgba(253%2c 253%2c 253%2c 1)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M158.762%2c791.984C235.396%2c791.238%2c296.945%2c735.443%2c334.115%2c668.422C370.032%2c603.66%2c378.338%2c525.914%2c342.161%2c461.297C305.184%2c395.251%2c234.312%2c350.567%2c158.762%2c355.22C89.327%2c359.496%2c45.292%2c421.342%2c10.718%2c481.709C-23.565%2c541.569%2c-52.309%2c609.636%2c-22.603%2c671.894C10.863%2c742.032%2c81.053%2c792.74%2c158.762%2c791.984' fill='rgba(253%2c 253%2c 253%2c 1)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M463.79%2c462.135C485.484%2c462.009%2c507.481%2c454.326%2c518.396%2c435.578C529.369%2c416.731%2c525.321%2c393.707%2c514.728%2c374.643C503.769%2c354.92%2c486.346%2c337.864%2c463.79%2c337.308C440.415%2c336.731%2c419.782%2c351.645%2c408.306%2c372.017C397.048%2c392.002%2c396.047%2c416.687%2c408.073%2c436.22C419.583%2c454.915%2c441.836%2c462.263%2c463.79%2c462.135' fill='rgba(253%2c 253%2c 253%2c 1)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M1492.014%2c429.96C1533.475%2c427.406%2c1568.412%2c404.1%2c1591.286%2c369.425C1617.341%2c329.927%2c1639.822%2c281.38%2c1617.576%2c239.617C1594.446%2c196.193%2c1541.153%2c180.612%2c1492.014%2c183.057C1447.172%2c185.288%2c1409.885%2c212.87%2c1386.373%2c251.118C1361.465%2c291.636%2c1344.843%2c342.162%2c1369.033%2c383.113C1392.946%2c423.595%2c1445.086%2c432.85%2c1492.014%2c429.96' fill='rgba(253%2c 253%2c 253%2c 1)' class='triangle-float1'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1161'%3e%3crect width='1520' height='780' fill='white'%3e%3c/rect%3e%3c/mask%3e%3cstyle%3e %40keyframes float1 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(-10px%2c 0)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float1 %7b animation: float1 5s infinite%3b %7d %40keyframes float2 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(-5px%2c -5px)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float2 %7b animation: float2 4s infinite%3b %7d %40keyframes float3 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(0%2c -10px)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float3 %7b animation: float3 6s infinite%3b %7d %3c/style%3e%3c/defs%3e%3c/svg%3e");
 }
 
 .form-structor {
@@ -29,10 +27,7 @@ html, body {
     right: 0;
     bottom: 0;
     left: 0;
-    background-repeat: no-repeat;
-    background-position: left bottom;
-    background-size: 500px;
-    background-image: url('https://images.unsplash.com/photo-1503602642458-232111445657?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bf884ad570b50659c5fa2dc2cfb20ecf&auto=format&fit=crop&w=1000&q=100');
+    
 }
 
 .signup {

@@ -8,6 +8,8 @@
     @Scripts.Render("~/Scripts/Login.js")
 </head>
 <body>
+
+    
     <div class="form-structor">
         <div class="Registrar">
             <h2 class="form-title" id="signup"><span>or</span>Registrar</h2>
@@ -22,6 +24,7 @@
                 <button class="submit-btn">Registrarse</button>
             </div>
         </div>
+        @RenderBody();
         <div class="login slide-up">
             <div class="center">
                 <h2 class="form-title" id="login"><span>or</span>Ingresar</h2>

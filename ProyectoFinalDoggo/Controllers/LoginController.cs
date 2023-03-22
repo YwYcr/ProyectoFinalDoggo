@@ -28,7 +28,7 @@ namespace ProyectoFinalDoggo.Controllers
                 else
                 {
                     Session["Usuario"] = userDetails.usuario;
-                    return RedirectToAction("Back to List", "Index");
+                    return RedirectToAction("Index", "Productos");
                 }
             }
         }

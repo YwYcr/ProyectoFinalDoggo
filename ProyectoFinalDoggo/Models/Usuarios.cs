@@ -9,6 +9,7 @@
 
 namespace ProyectoFinalDoggo.Models
 {
+    using ProyectoFinalDoggo.clases;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -23,6 +24,7 @@ namespace ProyectoFinalDoggo.Models
         }
 
         [Required(ErrorMessage = "Dato requerido")]
+        
         public string usuario { get; set; }
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "Dato requerido")]

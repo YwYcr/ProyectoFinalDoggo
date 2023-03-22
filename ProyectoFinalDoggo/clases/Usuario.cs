@@ -1,6 +1,7 @@
 ﻿using ProyectoFinalDoggo.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
 using System.Linq;
@@ -73,5 +74,28 @@ namespace ProyectoFinalDoggo.clases
             }
 
         }
+
+
     }
+    public class IDExiste : ValidationAttribute
+    {
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+
+            using (g5_ProyectoFinalDoggoEntities2 db = new g5_ProyectoFinalDoggoEntities2())
+            {
+
+                string codigo = (string)value;
+                if (db.Usuarios.Where(x =>x.usuario == codigo).Count() > 0)
+                {
+
+                    return new ValidationResult("El usuario ya existe");
+        
+        }
+                return ValidationResult.Success;
+            }
+
+        }
+    }
+
 }

@@ -1,0 +1,163 @@
+﻿@model ProyectoFinalDoggo.Models.Usuarios
+    @{
+        ViewBag.Title = "Login";
+        
+    }
+
+
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/Login-theme.css" rel="stylesheet" />
+    <title>Login</title>
+
+</head>
+    <body>
+
+        <h2>Login</h2>
+        <div id="login slide-up">
+            @using (Html.BeginForm("Autherize", "Login", FormMethod.Post))
+            {
+                <table>
+                    <tr>
+                        <td></td>
+                        <td >Doggo</td>
+                    </tr>
+                    <img src="~/images/Logo DOGGO (fondo negro).jpg" />
+                    <h2 class="form-title" id="login"><span></span>Inicio de Sesión</h2>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(Model => Model.usuario)
+                        </td>
+                        <td>
+                            @Html.EditorFor(Model => Model.usuario)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>@Html.ValidationMessageFor(Model => Model.usuario)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(Model => Model.pass)</td>
+                        <td>@Html.EditorFor(Model => Model.pass)</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>@Html.ValidationMessageFor(Model => Model.pass)</td>
+                    </tr>
+                    <td colspan="2">
+                        <label class="field-validation-erorr">@Html.DisplayFor(Model => Model.LoginErrorMessage) </label>
+                    </td>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button class="submit-btn">Ingresar</button>
+                        </td>
+                    </tr>
+                </table>
+                }
+        </div>
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    </body>
+
+@*@model ProyectoFinalDoggo.Models.Usuarios
+@{
+    ViewBag.Title = "Login";
+    //Layout = "~/Views/Shared/LoginView.cshtml";
+}
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #b7916e;
+        }
+
+        .form-control {
+            border-radius: 0;
+            border: none;
+            
+        }
+
+            .form-control:focus {
+                box-shadow: none
+            }
+
+        .btn-primary {
+            background-color: #a37a35;
+            border: none;
+            border-radius: 0;
+        }
+
+            .btn-primary:hover {
+                background-color: #865f27;
+            }
+
+        label {
+            font-weight: bold;
+            color: #7e624d;
+        }
+
+        .error {
+            color: #dc3545;
+        }
+
+        .table td {
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <img src="~/images/Logo DOGGO (fondo negro).jpg"/>
+                <div id="login slide-up">
+                    @using (Html.BeginForm("Autherize", "Login", FormMethod.Post))
+                    {
+                        <table class="table">
+                            <tr>
+                                <td></td>
+                                <h2>Ingresar</h2>
+                            </tr>
+                            <tr>
+                                <td>@Html.LabelFor(Model => Model.usuario)</td>
+                                <td>@Html.EditorFor(Model => Model.usuario, new { @class = "form-control" })</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>@Html.ValidationMessageFor(Model => Model.usuario, "", new { @class = "error" })</td>
+                            </tr>
+                            <tr>
+                                <td>@Html.LabelFor(Model => Model.pass)</td>
+                                <td>@Html.EditorFor(Model => Model.pass, new { @class = "form-control" })</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>@Html.ValidationMessageFor(Model => Model.pass, "", new { @class = "error" })</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <label class="field-validation-erorr">@Html.DisplayFor(Model => Model.LoginErrorMessage) </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <button class="btn btn-primary btn-block">Ingresar</button>
+                                </td>
+                            </tr>
+                        </table>
+                    }
+                </div>
+            </div>
+</body>*@
