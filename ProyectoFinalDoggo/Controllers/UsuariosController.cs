@@ -13,16 +13,12 @@ namespace ProyectoFinalDoggo.Controllers
         // GET: Usuarios
         Usuario usuario = new Usuario();
 
-        // GET: Usuarios
         public ActionResult Index()
         {
-
             IEnumerable<Usuarios> lst = usuario.Consultar();
 
             return View(lst);
-
         }
-
 
         public ActionResult Eliminar(string id)
         {
@@ -30,8 +26,9 @@ namespace ProyectoFinalDoggo.Controllers
             {
                 usuario = id
             };
+
             usuario.Eliminar(modelo);
-            ViewBag.valor = " El Usuarios fue eliminado ";
+            ViewBag.valor = "El usuario fue eliminado";
             IEnumerable<Usuarios> lst = usuario.Consultar();
 
             return View("Index", lst);
@@ -42,10 +39,20 @@ namespace ProyectoFinalDoggo.Controllers
             ViewBag.valor = " ";
             return View(modelo);
         }
+
+        [HttpPost]
         public ActionResult Nuevo(Usuarios modelo)
         {
+            var existingUser = usuario.Consulta(modelo.usuario);
+
+            if (existingUser != null)
+            {
+                ModelState.AddModelError("", "Este usuario ya existe.");
+                return View("Guardar", modelo);
+            }
+
             usuario.Guardar(modelo);
-            ViewBag.mensaje = "Se guardo Correctamente";
+            ViewBag.mensaje = "Se guardo correctamente";
             return View("Guardar", modelo);
         }
 
@@ -54,9 +61,9 @@ namespace ProyectoFinalDoggo.Controllers
             Usuarios modelo = usuario.Consulta(id);
             ViewBag.valor = " ";
             return View(modelo);
-
         }
 
+        [HttpPost]
         public ActionResult Cambiar(Usuarios modelo)
         {
             usuario.Modificar(modelo);
@@ -68,7 +75,6 @@ namespace ProyectoFinalDoggo.Controllers
         {
             Usuarios modelo = usuario.Consulta(id);
             return View(modelo);
-
         }
     }
 }

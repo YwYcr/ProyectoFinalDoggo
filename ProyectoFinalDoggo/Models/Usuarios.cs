@@ -14,6 +14,8 @@ namespace ProyectoFinalDoggo.Models
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
+    using ProyectoFinalDoggo.Models;
+    using System.Linq;
     
     public partial class Usuarios
     {
@@ -39,5 +41,8 @@ namespace ProyectoFinalDoggo.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<compras> compras { get; set; }
+
+
+
     }
 }
