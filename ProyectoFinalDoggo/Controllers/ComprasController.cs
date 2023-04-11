@@ -1,72 +1,136 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ProyectoFinalDoggo.Models;
-using ProyectoFinalDoggo.clases;
 
 namespace ProyectoFinalDoggo.Controllers
 {
     public class ComprasController : Controller
     {
-        Compra compra = new Compra();
+        private g5_ProyectoFinalDoggoEntities2 db = new g5_ProyectoFinalDoggoEntities2();
+
         // GET: Compras
         public ActionResult Index()
         {
-
-            IEnumerable<compras> lst = compra.Consultar();
-
-            return View(lst);
-
+            var compras = db.compras.Include(c => c.Productos).Include(c => c.Usuarios);
+            return View(compras.ToList());
         }
 
-
-        public ActionResult Eliminar(int id)
+        // GET: Compras/Details/5
+        public ActionResult Details(int? id)
         {
-            compras modelo = new compras()
+            if (id == null)
             {
-                IDTrans = id
-            };
-            compra.Eliminar(modelo);
-            ViewBag.valor = " La Compra fue eliminada ";
-            IEnumerable<compras> lst = compra.Consultar();
-
-            return View("Index", lst);
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            compras compras = db.compras.Find(id);
+            if (compras == null)
+            {
+                return HttpNotFound();
+            }
+            return View(compras);
         }
 
-        public ActionResult Guardar(compras modelo)
+        // GET: Compras/Create
+        public ActionResult Create()
         {
-            ViewBag.valor = " ";
-            return View(modelo);
-        }
-        public ActionResult Nuevo(compras modelo)
-        {
-            compra.Guardar(modelo);
-            ViewBag.mensaje = "Se guardo Correctamente";
-            return View("Guardar", modelo);
+            ViewBag.IDProd = new SelectList(db.Productos, "IDProd", "nomProducto");
+            ViewBag.usuario = new SelectList(db.Usuarios, "usuario", "pass");
+            return View();
         }
 
-        public ActionResult Modificar(int id)
+        // POST: Compras/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "IDTrans,IDProd,usuario,COSTO")] compras compras)
         {
-            compras modelo = compra.Consulta(id);
-            ViewBag.valor = " ";
-            return View(modelo);
+            if (ModelState.IsValid)
+            {
+                db.compras.Add(compras);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
 
+            ViewBag.IDProd = new SelectList(db.Productos, "IDProd", "nomProducto", compras.IDProd);
+            ViewBag.usuario = new SelectList(db.Usuarios, "usuario", "pass", compras.usuario);
+            return View(compras);
         }
 
-        public ActionResult Cambiar(compras modelo)
+        // GET: Compras/Edit/5
+        public ActionResult Edit(int? id)
         {
-            compra.Modificar(modelo);
-            ViewBag.valor = " ";
-            return View("Modificar", modelo);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            compras compras = db.compras.Find(id);
+            if (compras == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.IDProd = new SelectList(db.Productos, "IDProd", "nomProducto", compras.IDProd);
+            ViewBag.usuario = new SelectList(db.Usuarios, "usuario", "pass", compras.usuario);
+            return View(compras);
         }
 
-        public ActionResult Detalle(int id)
+        // POST: Compras/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "IDTrans,IDProd,usuario,COSTO")] compras compras)
         {
-            compras modelo = compra.Consulta(id);
-            return View(modelo);
+            if (ModelState.IsValid)
+            {
+                db.Entry(compras).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.IDProd = new SelectList(db.Productos, "IDProd", "nomProducto", compras.IDProd);
+            ViewBag.usuario = new SelectList(db.Usuarios, "usuario", "pass", compras.usuario);
+            return View(compras);
+        }
 
+        // GET: Compras/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            compras compras = db.compras.Find(id);
+            if (compras == null)
+            {
+                return HttpNotFound();
+            }
+            return View(compras);
+        }
+
+        // POST: Compras/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            compras compras = db.compras.Find(id);
+            db.compras.Remove(compras);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

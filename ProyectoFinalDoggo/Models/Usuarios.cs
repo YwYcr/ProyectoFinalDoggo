@@ -9,28 +9,25 @@
 
 namespace ProyectoFinalDoggo.Models
 {
-    using ProyectoFinalDoggo.clases;
     using System;
     using System.Collections.Generic;
+    using ProyectoFinalDoggo.clases;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using ProyectoFinalDoggo.Models;
     using System.Linq;
-    
+
     public partial class Usuarios
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Usuarios()
         {
             this.compras = new HashSet<compras>();
+            this.carrito = new HashSet<carrito>();
         }
-
-        [Required(ErrorMessage = "Dato requerido")]
-        
+    
         public string usuario { get; set; }
-        [Required(ErrorMessage = "Dato requerido1")]
         public string pass { get; set; }
-        
         public string correo { get; set; }
         public string direccion { get; set; }
         public string telefono { get; set; }
@@ -38,11 +35,10 @@ namespace ProyectoFinalDoggo.Models
         public string nombre { get; set; }
         public string apellido { get; set; }
         public string LoginErrorMessage { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<compras> compras { get; set; }
-
-
-
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<carrito> carrito { get; set; }
     }
 }

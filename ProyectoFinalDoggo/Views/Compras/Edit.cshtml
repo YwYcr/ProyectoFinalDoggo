@@ -1,14 +1,14 @@
 ﻿@model ProyectoFinalDoggo.Models.compras
 
 @{
-    ViewBag.Title = "Guardar";
+    ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/DoggoLayout.cshtml";
 }
 
-<h2>Guardar</h2>
+<h2>Edit</h2>
 
 
-@using (Html.BeginForm("Nuevo", "Compras", FormMethod.Post)) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
@@ -16,13 +16,7 @@
         <h4>compras</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.IDTrans, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.IDTrans, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.IDTrans, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        @Html.HiddenFor(model => model.IDTrans)
 
         <div class="form-group">
             @Html.LabelFor(model => model.IDProd, "IDProd", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -50,7 +44,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>

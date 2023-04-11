@@ -1,0 +1,67 @@
+﻿@model ProyectoFinalDoggo.Models.Productos
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/DoggoLayout.cshtml";
+}
+
+<h2>Detalle producto</h2>
+
+<div>
+    <h4>Productos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nomProducto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nomProducto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.precio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.precio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Categoria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categoria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.detalles)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.detalles)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cantidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cantidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.imagen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.imagen)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IDProd }) |
+    @Html.ActionLink("Volver", "Index")
+</p>

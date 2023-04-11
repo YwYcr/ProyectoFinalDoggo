@@ -132,13 +132,19 @@
     <Compile Include="clases\Producto.cs" />
     <Compile Include="clases\Compra.cs" />
     <Compile Include="clases\Usuario.cs" />
+    <Compile Include="Controllers\old\Compras2Controller.cs" />
     <Compile Include="Controllers\ComprasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\old\Productos2Controller.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
+    <Compile Include="Controllers\old\Usuarios2Controller.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\carrito.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\compras.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -290,6 +296,9 @@
     <Content Include="bin\roslyn\vbc.exe.config" />
     <Content Include="bin\roslyn\vbc.rsp" />
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
+    <Content Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\LayoutScripts.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -317,22 +326,30 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\DoggoLayout.cshtml" />
     <Content Include="Views\Productos\Index.cshtml" />
-    <Content Include="Views\Productos\Eliminar.cshtml" />
-    <Content Include="Views\Productos\Guardar.cshtml" />
-    <Content Include="Views\Productos\Modificar.cshtml" />
-    <Content Include="Views\Productos\Detalle.cshtml" />
+    <Content Include="Views\Productos\old\Guardar.cshtml" />
+    <Content Include="Views\Productos\old\Modificar.cshtml" />
+    <Content Include="Views\Productos\old\Detalle.cshtml" />
     <Content Include="Views\Usuarios\Index.cshtml" />
-    <Content Include="Views\Usuarios\Eliminar.cshtml" />
-    <Content Include="Views\Usuarios\Guardar.cshtml" />
-    <Content Include="Views\Usuarios\Modificar.cshtml" />
-    <Content Include="Views\Usuarios\Detalle.cshtml" />
-    <Content Include="Views\Compras\Eliminar.cshtml" />
-    <Content Include="Views\Compras\Guardar.cshtml" />
-    <Content Include="Views\Compras\Modificar.cshtml" />
-    <Content Include="Views\Compras\Detalle.cshtml" />
-    <Content Include="Views\Compras\Index.cshtml" />
+    <Content Include="Views\Usuarios\old\Eliminar.cshtml" />
+    <Content Include="Views\Usuarios\old\Guardar.cshtml" />
+    <Content Include="Views\Usuarios\old\Modificar.cshtml" />
+    <Content Include="Views\Usuarios\old\Detalle.cshtml" />
     <Content Include="Views\Shared\LoginView.cshtml" />
     <Content Include="Views\Login\index.cshtml" />
+    <Content Include="Views\Productos\old\Eliminar.cshtml" />
+    <Content Include="Views\Compras\Index.cshtml" />
+    <Content Include="Views\Compras\Create.cshtml" />
+    <Content Include="Views\Compras\Delete.cshtml" />
+    <Content Include="Views\Compras\Details.cshtml" />
+    <Content Include="Views\Compras\Edit.cshtml" />
+    <Content Include="Views\Productos\Create.cshtml" />
+    <Content Include="Views\Productos\Delete.cshtml" />
+    <Content Include="Views\Productos\Details.cshtml" />
+    <Content Include="Views\Productos\Edit.cshtml" />
+    <Content Include="Views\Usuarios\Create.cshtml" />
+    <Content Include="Views\Usuarios\Delete.cshtml" />
+    <Content Include="Views\Usuarios\Details.cshtml" />
+    <Content Include="Views\Usuarios\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

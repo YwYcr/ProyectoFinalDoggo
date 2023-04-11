@@ -12,22 +12,17 @@ namespace ProyectoFinalDoggo.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class compras
+    public partial class carrito
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public compras()
-        {
-            this.carrito = new HashSet<carrito>();
-        }
-    
-        public int IDTrans { get; set; }
-        public int IDProd { get; set; }
+        public int IDCarrito { get; set; }
+        public int cantidad { get; set; }
+        public Nullable<decimal> total { get; set; }
+        public Nullable<int> IDProd { get; set; }
         public string usuario { get; set; }
-        public Nullable<decimal> COSTO { get; set; }
+        public int IDtrans { get; set; }
     
+        public virtual compras compras { get; set; }
         public virtual Productos Productos { get; set; }
         public virtual Usuarios Usuarios { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<carrito> carrito { get; set; }
     }
 }

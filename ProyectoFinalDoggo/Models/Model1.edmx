@@ -4,7 +4,18 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="g5_ProyectoFinalDoggoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="g5_ProyectoFinalDoggoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="carrito">
+          <Key>
+            <PropertyRef Name="IDCarrito" />
+          </Key>
+          <Property Name="IDCarrito" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cantidad" Type="int" Nullable="false" />
+          <Property Name="total" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="IDProd" Type="int" />
+          <Property Name="usuario" Type="varchar" MaxLength="50" />
+          <Property Name="IDtrans" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="compras">
           <Key>
             <PropertyRef Name="IDTrans" />
@@ -39,6 +50,42 @@
           <Property Name="nombre" Type="varchar" MaxLength="25" Nullable="false" />
           <Property Name="apellido" Type="varchar" MaxLength="25" Nullable="false" />
         </EntityType>
+        <Association Name="fk_carrito_compra">
+          <End Role="compras" Type="Self.compras" Multiplicity="1" />
+          <End Role="carrito" Type="Self.carrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="compras">
+              <PropertyRef Name="IDTrans" />
+            </Principal>
+            <Dependent Role="carrito">
+              <PropertyRef Name="IDtrans" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_carrito_producto">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="0..1" />
+          <End Role="carrito" Type="Self.carrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="IDProd" />
+            </Principal>
+            <Dependent Role="carrito">
+              <PropertyRef Name="IDProd" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_carrito_usuario">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="carrito" Type="Self.carrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="usuario" />
+            </Principal>
+            <Dependent Role="carrito">
+              <PropertyRef Name="usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_compras_productos">
           <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
           <End Role="compras" Type="Self.compras" Multiplicity="*" />
@@ -64,9 +111,22 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="g5_ProyectoFinalDoggoModelStoreContainer">
+          <EntitySet Name="carrito" EntityType="Self.carrito" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="compras" EntityType="Self.compras" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_carrito_compra" Association="Self.fk_carrito_compra">
+            <End Role="compras" EntitySet="compras" />
+            <End Role="carrito" EntitySet="carrito" />
+          </AssociationSet>
+          <AssociationSet Name="fk_carrito_producto" Association="Self.fk_carrito_producto">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="carrito" EntitySet="carrito" />
+          </AssociationSet>
+          <AssociationSet Name="fk_carrito_usuario" Association="Self.fk_carrito_usuario">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="carrito" EntitySet="carrito" />
+          </AssociationSet>
           <AssociationSet Name="fk_compras_productos" Association="Self.fk_compras_productos">
             <End Role="Productos" EntitySet="Productos" />
             <End Role="compras" EntitySet="compras" />
@@ -76,8 +136,7 @@
             <End Role="compras" EntitySet="compras" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="g5_ProyectoFinalDoggoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -91,6 +150,7 @@
           <Property Name="COSTO" Type="Decimal" Precision="10" Scale="2" />
           <NavigationProperty Name="Productos" Relationship="Self.fk_compras_productos" FromRole="compras" ToRole="Productos" />
           <NavigationProperty Name="Usuarios" Relationship="Self.fk_compras_usuario" FromRole="compras" ToRole="Usuarios" />
+          <NavigationProperty Name="carrito" Relationship="g5_ProyectoFinalDoggoModel.fk_carrito_compra" FromRole="compras" ToRole="carrito" />
         </EntityType>
         <EntityType Name="Productos">
           <Key>
@@ -104,6 +164,7 @@
           <Property Name="cantidad" Type="Int32" />
           <Property Name="imagen" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="compras" Relationship="Self.fk_compras_productos" FromRole="Productos" ToRole="compras" />
+          <NavigationProperty Name="carrito" Relationship="g5_ProyectoFinalDoggoModel.fk_carrito_producto" FromRole="Productos" ToRole="carrito" />
         </EntityType>
         <EntityType Name="Usuarios">
           <Key>
@@ -118,6 +179,7 @@
           <Property Name="nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="apellido" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="compras" Relationship="Self.fk_compras_usuario" FromRole="Usuarios" ToRole="compras" />
+          <NavigationProperty Name="carrito" Relationship="g5_ProyectoFinalDoggoModel.fk_carrito_usuario" FromRole="Usuarios" ToRole="carrito" />
         </EntityType>
         <Association Name="fk_compras_productos">
           <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
@@ -155,7 +217,70 @@
             <End Role="Usuarios" EntitySet="Usuarios" />
             <End Role="compras" EntitySet="compras" />
           </AssociationSet>
+          <EntitySet Name="carrito" EntityType="g5_ProyectoFinalDoggoModel.carrito" />
+          <AssociationSet Name="fk_carrito_compra" Association="g5_ProyectoFinalDoggoModel.fk_carrito_compra">
+            <End Role="compras" EntitySet="compras" />
+            <End Role="carrito" EntitySet="carrito" />
+          </AssociationSet>
+          <AssociationSet Name="fk_carrito_producto" Association="g5_ProyectoFinalDoggoModel.fk_carrito_producto">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="carrito" EntitySet="carrito" />
+          </AssociationSet>
+          <AssociationSet Name="fk_carrito_usuario" Association="g5_ProyectoFinalDoggoModel.fk_carrito_usuario">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="carrito" EntitySet="carrito" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="carrito">
+          <Key>
+            <PropertyRef Name="IDCarrito" />
+          </Key>
+          <Property Name="IDCarrito" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cantidad" Type="Int32" Nullable="false" />
+          <Property Name="total" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="IDProd" Type="Int32" />
+          <Property Name="usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IDtrans" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="compras" Relationship="g5_ProyectoFinalDoggoModel.fk_carrito_compra" FromRole="carrito" ToRole="compras" />
+          <NavigationProperty Name="Productos" Relationship="g5_ProyectoFinalDoggoModel.fk_carrito_producto" FromRole="carrito" ToRole="Productos" />
+          <NavigationProperty Name="Usuarios" Relationship="g5_ProyectoFinalDoggoModel.fk_carrito_usuario" FromRole="carrito" ToRole="Usuarios" />
+        </EntityType>
+        <Association Name="fk_carrito_compra">
+          <End Type="g5_ProyectoFinalDoggoModel.compras" Role="compras" Multiplicity="1" />
+          <End Type="g5_ProyectoFinalDoggoModel.carrito" Role="carrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="compras">
+              <PropertyRef Name="IDTrans" />
+            </Principal>
+            <Dependent Role="carrito">
+              <PropertyRef Name="IDtrans" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_carrito_producto">
+          <End Type="g5_ProyectoFinalDoggoModel.Productos" Role="Productos" Multiplicity="0..1" />
+          <End Type="g5_ProyectoFinalDoggoModel.carrito" Role="carrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="IDProd" />
+            </Principal>
+            <Dependent Role="carrito">
+              <PropertyRef Name="IDProd" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_carrito_usuario">
+          <End Type="g5_ProyectoFinalDoggoModel.Usuarios" Role="Usuarios" Multiplicity="0..1" />
+          <End Type="g5_ProyectoFinalDoggoModel.carrito" Role="carrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="usuario" />
+            </Principal>
+            <Dependent Role="carrito">
+              <PropertyRef Name="usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -196,6 +321,18 @@
                 <ScalarProperty Name="rol" ColumnName="rol" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="apellido" ColumnName="apellido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="carrito">
+            <EntityTypeMapping TypeName="g5_ProyectoFinalDoggoModel.carrito">
+              <MappingFragment StoreEntitySet="carrito">
+                <ScalarProperty Name="IDtrans" ColumnName="IDtrans" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="IDProd" ColumnName="IDProd" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="IDCarrito" ColumnName="IDCarrito" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

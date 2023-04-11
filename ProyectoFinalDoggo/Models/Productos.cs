@@ -18,6 +18,7 @@ namespace ProyectoFinalDoggo.Models
         public Productos()
         {
             this.compras = new HashSet<compras>();
+            this.carrito = new HashSet<carrito>();
         }
     
         public int IDProd { get; set; }
@@ -30,5 +31,7 @@ namespace ProyectoFinalDoggo.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<compras> compras { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<carrito> carrito { get; set; }
     }
 }

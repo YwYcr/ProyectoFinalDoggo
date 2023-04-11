@@ -1,80 +1,127 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ProyectoFinalDoggo.Models;
-using ProyectoFinalDoggo.clases;
 
 namespace ProyectoFinalDoggo.Controllers
 {
     public class UsuariosController : Controller
     {
-        // GET: Usuarios
-        Usuario usuario = new Usuario();
+        private g5_ProyectoFinalDoggoEntities2 db = new g5_ProyectoFinalDoggoEntities2();
 
+        // GET: Usuarios
         public ActionResult Index()
         {
-            IEnumerable<Usuarios> lst = usuario.Consultar();
-
-            return View(lst);
+            return View(db.Usuarios.ToList());
         }
 
-        public ActionResult Eliminar(string id)
+        // GET: Usuarios/Details/5
+        public ActionResult Details(string id)
         {
-            Usuarios modelo = new Usuarios()
+            if (id == null)
             {
-                usuario = id
-            };
-
-            usuario.Eliminar(modelo);
-            ViewBag.valor = "El usuario fue eliminado";
-            IEnumerable<Usuarios> lst = usuario.Consultar();
-
-            return View("Index", lst);
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Usuarios usuarios = db.Usuarios.Find(id);
+            if (usuarios == null)
+            {
+                return HttpNotFound();
+            }
+            return View(usuarios);
         }
 
-        public ActionResult Guardar(Usuarios modelo)
+        // GET: Usuarios/Create
+        public ActionResult Create()
         {
-            ViewBag.valor = " ";
-            return View(modelo);
+            return View();
         }
 
+        // POST: Usuarios/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public ActionResult Nuevo(Usuarios modelo)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "usuario,pass,correo,direccion,telefono,rol,nombre,apellido")] Usuarios usuarios)
         {
-            var existingUser = usuario.Consulta(modelo.usuario);
-
-            if (existingUser != null)
+            if (ModelState.IsValid)
             {
-                ModelState.AddModelError("", "Este usuario ya existe.");
-                return View("Guardar", modelo);
+                db.Usuarios.Add(usuarios);
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
 
-            usuario.Guardar(modelo);
-            ViewBag.mensaje = "Se guardo correctamente";
-            return View("Guardar", modelo);
+            return View(usuarios);
         }
 
-        public ActionResult Modificar(string id)
+        // GET: Usuarios/Edit/5
+        public ActionResult Edit(string id)
         {
-            Usuarios modelo = usuario.Consulta(id);
-            ViewBag.valor = " ";
-            return View(modelo);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Usuarios usuarios = db.Usuarios.Find(id);
+            if (usuarios == null)
+            {
+                return HttpNotFound();
+            }
+            return View(usuarios);
         }
 
+        // POST: Usuarios/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public ActionResult Cambiar(Usuarios modelo)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "usuario,pass,correo,direccion,telefono,rol,nombre,apellido")] Usuarios usuarios)
         {
-            usuario.Modificar(modelo);
-            ViewBag.valor = " ";
+            if (ModelState.IsValid)
+            {
+                db.Entry(usuarios).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(usuarios);
+        }
+
+        // GET: Usuarios/Delete/5
+        public ActionResult Delete(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Usuarios usuarios = db.Usuarios.Find(id);
+            if (usuarios == null)
+            {
+                return HttpNotFound();
+            }
+            return View(usuarios);
+        }
+
+        // POST: Usuarios/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(string id)
+        {
+            Usuarios usuarios = db.Usuarios.Find(id);
+            db.Usuarios.Remove(usuarios);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        public ActionResult Detalle(string id)
+        protected override void Dispose(bool disposing)
         {
-            Usuarios modelo = usuario.Consulta(id);
-            return View(modelo);
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

@@ -1,14 +1,9 @@
 ﻿using ProyectoFinalDoggo.Models;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
-using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
 
 namespace ProyectoFinalDoggo.clases
 {
@@ -88,7 +83,7 @@ namespace ProyectoFinalDoggo.clases
 
 
 
-            public Usuarios Consulta(string id)
+        public Usuarios Consulta(string id)
         {
             using (g5_ProyectoFinalDoggoEntities2 db = new g5_ProyectoFinalDoggoEntities2())
             {
@@ -108,12 +103,12 @@ namespace ProyectoFinalDoggo.clases
             {
 
                 string codigo = (string)value;
-                if (db.Usuarios.Where(x =>x.usuario == codigo).Count() > 0)
+                if (db.Usuarios.Where(x => x.usuario == codigo).Count() > 0)
                 {
 
                     return new ValidationResult("El usuario ya existe");
-        
-        }
+
+                }
                 return ValidationResult.Success;
             }
 

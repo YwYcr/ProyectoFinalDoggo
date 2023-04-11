@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebGrease.Css.Extensions;
 
 namespace ProyectoFinalDoggo.clases
 {
@@ -20,7 +21,7 @@ namespace ProyectoFinalDoggo.clases
         {
             using (g5_ProyectoFinalDoggoEntities2 db = new g5_ProyectoFinalDoggoEntities2())
             {
-                db.Entry(modelo).State = System.Data.Entity.EntityState.Deleted;
+                db.Entry(modelo).State = System.Data.Entity.EntityState.Deleted;              
                 db.SaveChanges();
 
             }

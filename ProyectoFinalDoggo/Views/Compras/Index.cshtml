@@ -5,21 +5,24 @@
     Layout = "~/Views/Shared/DoggoLayout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Listado de compras</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.COSTO)
+            @Html.DisplayNameFor(model => model.IDTrans)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Productos.nomProducto)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Usuarios.pass)
+            @Html.DisplayNameFor(model => model.Productos.IDProd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuarios.usuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.COSTO)
         </th>
         <th></th>
     </tr>
@@ -27,18 +30,25 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.COSTO)
+            @Html.DisplayFor(modelItem => item.IDTrans)
         </td>
+
         <td>
             @Html.DisplayFor(modelItem => item.Productos.nomProducto)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Usuarios.pass)
+            @Html.DisplayFor(modelItem => item.Productos.IDProd)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IDTrans }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IDTrans }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IDTrans })
+            @Html.DisplayFor(modelItem => item.Usuarios.usuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.COSTO)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id = item.IDTrans }) |
+            @Html.ActionLink("Detalles", "Details", new { id = item.IDTrans }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.IDTrans })
         </td>
     </tr>
 }

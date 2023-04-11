@@ -3,70 +3,62 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/DoggoLayout.cshtml";
-
-    if (Session["Usuario"] == null)
-    {
-        Response.Redirect("~/Login/index");
-    }
-
 }
 
-<h3>Productos</h3>
-<p>
-    @Html.ActionLink("Agregar", "Guardar")
-</p>
- 
+<h2>Productos</h2>
 
+<p>
+    @Html.ActionLink("Crear nuevo", "Create")
+</p>
 <table class="table">
     <tr>
         <th>
-            Producto
+            @Html.DisplayNameFor(model => model.nomProducto)
         </th>
         <th>
-            Precio
+            @Html.DisplayNameFor(model => model.precio)
         </th>
         <th>
-            Categoria
+            @Html.DisplayNameFor(model => model.Categoria)
         </th>
         <th>
-            Detalles
+            @Html.DisplayNameFor(model => model.detalles)
         </th>
         <th>
-            Cantidad Disponible
+            @Html.DisplayNameFor(model => model.cantidad)
         </th>
         <th>
-            Imagen
+            @Html.DisplayNameFor(model => model.imagen)
         </th>
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.nomProducto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.precio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Categoria)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.detalles)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.cantidad)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.imagen)
-            </td>
-            <td>
-                @Html.ActionLink("Modificar", "Modificar", new { id = item.IDProd }) |
-                @Html.ActionLink("Detalle", "Detalle", new { id = item.IDProd }) |
-                @Html.ActionLink("Eliminar", "Eliminar", new { id = item.IDProd })
-            </td>
-        </tr>
-    }
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nomProducto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.precio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Categoria)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.detalles)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cantidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.imagen)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.IDProd }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.IDProd }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.IDProd })
+        </td>
+    </tr>
+}
 
 </table>

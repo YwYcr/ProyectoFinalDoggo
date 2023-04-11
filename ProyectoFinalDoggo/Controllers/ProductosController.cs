@@ -1,76 +1,127 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ProyectoFinalDoggo.Models;
-using ProyectoFinalDoggo.clases;
-
 
 namespace ProyectoFinalDoggo.Controllers
 {
     public class ProductosController : Controller
     {
-        Producto producto = new Producto();
+        private g5_ProyectoFinalDoggoEntities2 db = new g5_ProyectoFinalDoggoEntities2();
 
         // GET: Productos
         public ActionResult Index()
         {
-            
-                IEnumerable<Productos> lst = producto.Consultar();
-
-                return View(lst);
-            
+            return View(db.Productos.ToList());
         }
 
-
-        public ActionResult Eliminar(int id)
+        // GET: Productos/Details/5
+        public ActionResult Details(int? id)
         {
-            Productos modelo = new Productos()
+            if (id == null)
             {
-                IDProd = id
-            };
-            producto.Eliminar(modelo);
-            ViewBag.valor = " El Productos fue eliminado ";
-            IEnumerable<Productos> lst = producto.Consultar();
-
-            return View("Index", lst);
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Productos productos = db.Productos.Find(id);
+            if (productos == null)
+            {
+                return HttpNotFound();
+            }
+            return View(productos);
         }
 
-        public ActionResult Guardar(Productos modelo)
+        // GET: Productos/Create
+        public ActionResult Create()
         {
-            ViewBag.valor = " ";
-            return View(modelo);
-        }
-        public ActionResult Nuevo(Productos modelo)
-        {
-            producto.Guardar(modelo);
-            ViewBag.mensaje = "Se guardo Correctamente";
-            return View("Guardar", modelo);
+            return View();
         }
 
-        public ActionResult Modificar(int id)
+        // POST: Productos/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "IDProd,nomProducto,precio,Categoria,detalles,cantidad,imagen")] Productos productos)
         {
-            Productos modelo = producto.Consulta(id);
-            ViewBag.valor = " ";
-            return View(modelo);
+            if (ModelState.IsValid)
+            {
+                db.Productos.Add(productos);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
 
+            return View(productos);
         }
 
-        public ActionResult Cambiar(Productos modelo)
+        // GET: Productos/Edit/5
+        public ActionResult Edit(int? id)
         {
-            producto.Modificar(modelo);
-            ViewBag.valor = " ";
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Productos productos = db.Productos.Find(id);
+            if (productos == null)
+            {
+                return HttpNotFound();
+            }
+            return View(productos);
+        }
+
+        // POST: Productos/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "IDProd,nomProducto,precio,Categoria,detalles,cantidad,imagen")] Productos productos)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(productos).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(productos);
+        }
+
+        // GET: Productos/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Productos productos = db.Productos.Find(id);
+            if (productos == null)
+            {
+                return HttpNotFound();
+            }
+            return View(productos);
+        }
+
+        // POST: Productos/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Productos productos = db.Productos.Find(id);
+            db.Productos.Remove(productos);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        public ActionResult Detalle(int id)
+        protected override void Dispose(bool disposing)
         {
-            Productos modelo = producto.Consulta(id);
-            return View(modelo);
-
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
-
     }
-
 }
