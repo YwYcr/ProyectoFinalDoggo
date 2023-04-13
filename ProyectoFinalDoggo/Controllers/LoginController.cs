@@ -29,7 +29,7 @@ namespace ProyectoFinalDoggo.Controllers
                 else
                 {
                     Session["Usuario"] = userDetails.usuario;
-                    return RedirectToAction("Index", "Productos");
+                    return RedirectToAction("Menu", "Home");
                 }
             }
         }

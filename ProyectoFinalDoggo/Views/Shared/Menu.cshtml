@@ -1,0 +1,92 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Página principal - DoggoCR</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/MenuStyle.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+
+
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <header
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <img src="~/images/Logo DOGGO (fondo negro).jpg" class="logo" />
+            <div class="container-fluid" style="font-size: large; justify-content: right;
+">
+                @Html.ActionLink("Inicio", "Menu", "Home", null, new { @class = "nav-link", style = "color:white;" })
+                @Html.ActionLink("Productos", "Index", "Productos", null, new { @class = "nav-link", style = "color:white;" })
+                <a class="nav-link" href="https://accounts.google.com/" style="color: white;">Contáctanos</a>
+                @if (Session != null && Session["usuario"] != null)
+                {
+                    <a class="nav-link" style="white">Usuario: @Session["usuario"].ToString()</a>
+                    @*<a href="@Url.Action("Logout","Login")">salir</a>*@
+                }
+                else
+                {
+                    <p>No hay sesión iniciada</p>
+                }
+            </div>
+        </nav>
+    </header>
+
+    <div id="slideshow">
+        <img src="~/images/img1.jpg" />
+        <img src="~/images/img2.jpg" />
+        <img src="~/images/img3.jpg" />
+    </div>
+
+    <section class="options" id="ofertas">
+        <h1 class="heading">Bienvenido a DoggoCR</h1>
+
+        <div class="box-container">
+            <div class="box">
+                <div class="image">
+                    <img src="~/images/img4.jpg" />
+                </div>
+                <div class="content">
+                    <h3>Paquetes </h3>
+                    <p>Para los consentidos de la casa</p>
+                </div>
+            </div>
+            <div class="box">
+                <div class="image">
+                    <img src="~/images/img5.jpg" />
+                </div>
+                <div class="content">
+                    <h3>Promociones</h3>
+                    <p>Para salvar tu billetera</p>
+                </div>
+            </div>
+            <div class="box">
+                <div class="image">
+                    <img src="~/images/img6.jpg" />
+                </div>
+                <div class="content">
+                    <h3>Descuentos</h3>
+                    <p>En tus productos favoritos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+<script src="~/Scripts/LayoutScripts.js"></script>
+</html>

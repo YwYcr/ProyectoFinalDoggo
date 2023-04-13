@@ -132,13 +132,11 @@
     <Compile Include="clases\Producto.cs" />
     <Compile Include="clases\Compra.cs" />
     <Compile Include="clases\Usuario.cs" />
-    <Compile Include="Controllers\old\Compras2Controller.cs" />
     <Compile Include="Controllers\ComprasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\old\Productos2Controller.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
-    <Compile Include="Controllers\old\Usuarios2Controller.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -247,6 +245,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\CustomLayout.css" />
     <Content Include="Content\Login-theme.css" />
+    <Content Include="Content\MenuStyle.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -254,6 +253,9 @@
     <Content Include="images\img1.jpg" />
     <Content Include="images\img2.jpg" />
     <Content Include="images\img3.jpg" />
+    <Content Include="images\img4.jpg" />
+    <Content Include="images\img5.jpg" />
+    <Content Include="images\img6.jpg" />
     <Content Include="images\Loggo banner.jpg" />
     <Content Include="images\Logo DOGGO %28fondo negro%29.jpg" />
     <Content Include="Models\Model1.Context.tt">
@@ -350,9 +352,11 @@
     <Content Include="Views\Usuarios\Delete.cshtml" />
     <Content Include="Views\Usuarios\Details.cshtml" />
     <Content Include="Views\Usuarios\Edit.cshtml" />
+    <Content Include="Views\Shared\Menu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Controllers\old\" />
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
