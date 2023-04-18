@@ -7,11 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace ProyectoFinalDoggo.Controllers
 {
-    public class MenuController : Controller
+    public class ContactController : Controller
     {
-        public ActionResult Menu()
+        public ActionResult Contact()
         {
-            return View("Menu");
+            return View("Contact");
         }
     }
 }

@@ -17,7 +17,7 @@ function showSlide() {
     }
 
     // schedule the next slide
-    setTimeout(showSlide, 5000); // adjust the delay as needed
+    setTimeout(showSlide, 10000); // adjust the delay as needed
 }
 
 showSlide(); // start the slideshow

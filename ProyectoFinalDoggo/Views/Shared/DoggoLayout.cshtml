@@ -25,20 +25,23 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        @Html.ActionLink("Inicio", "Menu", "Home", null, new { @class = "nav-item nav-link active btn btn-link" })
-                    </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("Usuarios", "Index", "Usuarios", null, new { @class = "nav-item nav-link active btn btn-link" })
-                    </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("Compras", "Index", "Compras", null, new { @class = "nav-item nav-link active btn btn-link" })
-                    </li>
+                    @if (Session != null && Session["usuario"] != null)
+                    {
+                        <li class="nav-item">
+                            @Html.ActionLink("Inicio", "Menu", "Home", null, new { @class = "nav-item nav-link active btn btn-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Usuarios", "Index", "Usuarios", null, new { @class = "nav-item nav-link active btn btn-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Compras", "Index", "Compras", null, new { @class = "nav-item nav-link active btn btn-link" })
+                        </li>
+                    }
                     <li>
                         @if (Session != null && Session["usuario"] != null)
                         {
                             <p class="nav-link text-dark">Usuario: @Session["usuario"].ToString()</p>
-                            @*<a href="@Url.Action("Logout","Login")">salir</a>*@
+                            /*<a href="@Url.Action("Logout","Login")">salir</a>*/
                         }
                         else
                         {
@@ -51,6 +54,7 @@
     </nav>
 
     <div id="slideshow">
+        <img src="~/images/DOGG-01.jpg" />
         <img src="~/images/img1.jpg" />
         <img src="~/images/img2.jpg" />
         <img src="~/images/img3.jpg" />
