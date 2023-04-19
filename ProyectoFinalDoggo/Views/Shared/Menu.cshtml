@@ -26,14 +26,14 @@
 </head>
 <body class="d-flex flex-column min-vh-100">
 
-    <header
+    <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <img src="~/images/Logo DOGGO (fondo negro).jpg" class="logo" />
             <div class="container-fluid" style="font-size: large; justify-content: right;
 ">
                 @Html.ActionLink("Inicio", "Menu", "Home", null, new { @class = "nav-link", style = "color:white;" })
                 @Html.ActionLink("Productos", "Index", "Productos", null, new { @class = "nav-link", style = "color:white;" })
-                <a class="nav-link" href="https://accounts.google.com/" style="color: white;">Contáctanos</a>
+                @Html.ActionLink("Contactanos!", "Contact", "Contact", null, new { @class = "nav-link", style = "color:white;" })
                 @if (Session != null && Session["usuario"] != null)
                 {
                     <a class="nav-link" style="white">Usuario: @Session["usuario"].ToString()</a>
@@ -48,6 +48,7 @@
     </header>
 
     <div id="slideshow">
+        <img src="~/images/DOGG-01.jpg" />
         <img src="~/images/img1.jpg" />
         <img src="~/images/img2.jpg" />
         <img src="~/images/img3.jpg" />

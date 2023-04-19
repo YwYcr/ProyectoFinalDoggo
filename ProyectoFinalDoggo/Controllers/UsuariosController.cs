@@ -41,22 +41,27 @@ namespace ProyectoFinalDoggo.Controllers
             return View();
         }
 
-        // POST: Usuarios/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "usuario,pass,correo,direccion,telefono,rol,nombre,apellido")] Usuarios usuarios)
         {
             if (ModelState.IsValid)
             {
+                if (db.Usuarios.Any(u => u.usuario == usuarios.usuario))
+                {
+                    ModelState.AddModelError("usuario", "Usuario existente");
+                    return View(usuarios);
+                }
+
                 db.Usuarios.Add(usuarios);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Login");
             }
 
             return View(usuarios);
         }
+
 
         // GET: Usuarios/Edit/5
         public ActionResult Edit(string id)
