@@ -12,29 +12,31 @@
 </p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.nomProducto)
+        <th>        
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.precio)
+            Nombre del Producto
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Categoria)
+            Precio
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.detalles)
+            Categoria
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.cantidad)
+            Detalles 
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.imagen)
+            Cantidad
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            <img src="@item.imagen" alt="Imagen del Producto" width="200" height="150" />
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.nomProducto)
         </td>
@@ -50,13 +52,21 @@
         <td>
             @Html.DisplayFor(modelItem => item.cantidad)
         </td>
+
+
         <td>
-            @Html.DisplayFor(modelItem => item.imagen)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.IDProd }) |
-            @Html.ActionLink("Detalles", "Details", new { id=item.IDProd }) |
-            @Html.ActionLink("Eliminar", "Delete", new { id=item.IDProd })
+            <a href="@Url.Action("Edit", new { id = item.IDProd })" title="Editar">
+                <i class="fas fa-edit"></i>
+            </a>
+            <a href="@Url.Action("Details", new { id = item.IDProd })" title="Detalles">
+                <i class="fas fa-info-circle"></i>
+            </a>
+            <a href="@Url.Action("Delete", new { id = item.IDProd })" title="Eliminar" onclick="return confirm('¿Estás seguro de que deseas eliminar este producto?')">
+                <i class="fas fa-trash"></i>
+            </a>
+            <a href="@Url.Action("AddToCart", new { id = item.IDProd })" title="Agregar al carrito" onclick="return alert('Producto agregado al carrito')">
+                <i class="fas fa-cart-plus"></i> 
+            </a>
         </td>
     </tr>
 }

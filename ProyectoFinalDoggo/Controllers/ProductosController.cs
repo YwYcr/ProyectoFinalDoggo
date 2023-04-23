@@ -6,7 +6,10 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using ProyectoFinalDoggo.Filtros;
 using ProyectoFinalDoggo.Models;
+using System.Drawing;
+using System.IO;
 
 namespace ProyectoFinalDoggo.Controllers
 {
