@@ -10,6 +10,7 @@ using ProyectoFinalDoggo.Models;
 
 namespace ProyectoFinalDoggo.Controllers
 {
+    [VerificarProductos]
     public class ProductosController : Controller
     {
         private g5_ProyectoFinalDoggoEntities2 db = new g5_ProyectoFinalDoggoEntities2();
