@@ -10,12 +10,14 @@ using ProyectoFinalDoggo.Filtros;
 using ProyectoFinalDoggo.Models;
 using System.Drawing;
 using System.IO;
+using ProyectoFinalDoggo.clases;
 
 namespace ProyectoFinalDoggo.Controllers
 {
     [VerificarProductos]
     public class ProductosController : Controller
     {
+        public IEnumerable<Productos> cart = new List<Productos>();
         private g5_ProyectoFinalDoggoEntities2 db = new g5_ProyectoFinalDoggoEntities2();
 
         // GET: Productos
@@ -23,6 +25,32 @@ namespace ProyectoFinalDoggo.Controllers
         {
             return View(db.Productos.ToList());
         }
+
+        public ActionResult AddToCart(int id)
+        {
+
+            Productos prod = db.Productos.Find(id);
+            prod.cantidad = 1;
+            List<Productos> listaCart = Session["cart"] as List<Productos>;
+
+            if (listaCart == null)
+            {
+                listaCart = new List<Productos>();
+            }
+
+            listaCart.Add(prod);
+
+            Session["cart"] = listaCart;
+            return RedirectToAction("Index", "Productos");
+        }
+
+        public ActionResult Carrito()
+        {
+            List<Productos> listaCart = Session["cart"] as List<Productos>;       
+            // Pasar la lista de productos en el carrito como modelo a la vista
+            return View(listaCart);
+        }
+
 
         // GET: Productos/Details/5
         public ActionResult Details(int? id)
@@ -119,6 +147,10 @@ namespace ProyectoFinalDoggo.Controllers
             return RedirectToAction("Index");
         }
 
+
+
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -127,5 +159,7 @@ namespace ProyectoFinalDoggo.Controllers
             }
             base.Dispose(disposing);
         }
+
+
     }
 }

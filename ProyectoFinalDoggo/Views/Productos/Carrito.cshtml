@@ -1,0 +1,29 @@
+﻿@model IEnumerable<ProyectoFinalDoggo.Models.Productos>
+
+@{
+    ViewBag.Title = "Carrito";
+    Layout = "~/Views/Shared/DoggoLayout.cshtml";
+}
+
+<h2>Carrito</h2>
+
+<table class="table">
+
+        <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+        </tr>
+        @foreach (var prod in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => prod.nomProducto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => prod.cantidad)
+                </td>
+            </tr>
+        }
+    </table>
+    
+
