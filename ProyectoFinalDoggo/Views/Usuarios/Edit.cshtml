@@ -12,6 +12,7 @@
 {
     @Html.AntiForgeryToken()
     
+<div class="formulario">
     <div class="form-horizontal">
         <h4>Usuarios</h4>
         <hr />
@@ -19,71 +20,85 @@
         @Html.HiddenFor(model => model.usuario)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.pass, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pass, new { htmlAttributes = new { @class = "form-control" } })
+            Contraseña
+            <div class="col-md-5">
+                @Html.PasswordFor(model => model.pass, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.pass, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.correo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            Correo
+            <div class="col-md-5">
                 @Html.EditorFor(model => model.correo, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.correo, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.direccion, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            Dirección
+            <div class="col-md-5">
                 @Html.EditorFor(model => model.direccion, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.direccion, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.telefono, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            Teléfono
+            <div class="col-md-5">
                 @Html.EditorFor(model => model.telefono, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.telefono, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.rol, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.rol, new { htmlAttributes = new { @class = "form-control" } })
+            Rol
+            <div class="col-md-5">
+                <label>
+                    @Html.RadioButtonFor(model => model.rol, "user")
+                    User
+                </label>
+                <label>
+                    @Html.RadioButtonFor(model => model.rol, "admin")
+                    Admin
+                </label>
                 @Html.ValidationMessageFor(model => model.rol, "", new { @class = "text-danger" })
             </div>
+
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.nombre, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            Nombre
+            <div class="col-md-5">
                 @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.apellido, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            Apellido
+            <div class="col-md-5">
                 @Html.EditorFor(model => model.apellido, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.apellido, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guadar" class="btn btn-default" />
+            <div class="col-md-5">
+                @if (Session != null && Session["usuario"] != null && Session["rol"].ToString() == "admin")
+                {
+                    <div class="text-right">
+                        <input type="submit" value="Guadar" class="btn btn-primary" />
+                    </div>
+                }
             </div>
         </div>
     </div>
+</div>
 }
 
 <div>
-    @Html.ActionLink("Volver", "Index")
+    <a href="@Url.Action("Index")" class="btn btn-dark bottom-right">Volver</a>
 </div>
 
 @section Scripts {

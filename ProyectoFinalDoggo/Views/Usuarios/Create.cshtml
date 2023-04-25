@@ -8,82 +8,112 @@
 <h2>Crear nuevo Usuario</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
 <div class="form-horizontal">
     <h4>Usuarios</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
-        <h5>Usuario</h5>
-        <div class="col-md-10">
+        Usuario
+        <div class="col-md-5">
             @Html.EditorFor(model => model.usuario, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.usuario, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
-        <h5>Contrasena</h5>        
-        <div class="col-md-10">
+        Contrasena
+        <div class="col-md-5">
             @Html.EditorFor(model => model.pass, new { htmlAttributes = new { @class = "form-control", type = "password" } })
             @Html.ValidationMessageFor(model => model.pass, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
-        <h5>Nombre</h5>
-        <div class="col-md-10">
+        Nombre
+        <div class="col-md-5">
             @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
-        <h5>Apellido</h5>
-        <div class="col-md-10">
+        Apellido
+        <div class="col-md-5">
             @Html.EditorFor(model => model.apellido, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.apellido, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
-        <h5>Correo</h5>
-        <div class="col-md-10">
+        Correo
+        <div class="col-md-5">
             @Html.EditorFor(model => model.correo, new { htmlAttributes = new { @class = "form-control", type = "email" } })
             @Html.ValidationMessageFor(model => model.correo, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
-        <h5>Direccion</h5>
-        <div class="col-md-10">
+        Direccion
+        <div class="col-md-5">
             @Html.EditorFor(model => model.direccion, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.direccion, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
-        <h5>Telefono</h5>
-        <div class="col-md-10">
+        Telefono
+        <div class="col-md-5">
             @Html.EditorFor(model => model.telefono, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.telefono, "", new { @class = "text-danger" })
         </div>
     </div>
+    <div class="form-group">
+        Rol
+        @if (Session != null && Session["usuario"] != null && Session["rol"].ToString() == "admin")
+        {
+            <div class="col-md-5">
+                <label>
+                    @Html.RadioButtonFor(model => model.rol, "user", new { @checked = "checked" })
+                    Cliente
+                </label>
+                <label>
+                    @Html.RadioButtonFor(model => model.rol, "admin")
+                    Admin
+                </label>
+                @Html.ValidationMessageFor(model => model.rol, "", new { @class = "text-danger" })
+            </div>
+        }
+        else
+        {
+            <div class="col-md-5 hidden">
+                <label class="hidden">
+                    @Html.RadioButtonFor(model => model.rol, "user", new { @checked = "checked" })
+                    Cliente
+                </label>
+            </div>
+        }
+    </div>
 
 
     <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Crear" class="btn btn-default" />
+        <div class="text-center">
+            <input type="submit" value="Crear" class="btn btn-primary " />
         </div>
     </div>
 </div>
 }
 
+@if (Session != null && Session["usuario"] != null && Session["rol"].ToString() == "admin")
+{
 <div>
-    @Html.ActionLink("Volver", "Index")
+    <a href="@Url.Action("Index")" class="btn btn-dark">Volver</a>
 </div>
+}
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

@@ -2468,6 +2468,7 @@
     <Content Include="Views\Usuarios\Edit.cshtml" />
     <Content Include="Views\Shared\Menu.cshtml" />
     <Content Include="Views\Contact\Contact.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

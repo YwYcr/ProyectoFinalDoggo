@@ -13,5 +13,10 @@ namespace ProyectoFinalDoggo.Controllers
         {
             return View("Contact");
         }
+
+        public ActionResult Index()
+        {
+            return View("Index");
+        }
     }
 }

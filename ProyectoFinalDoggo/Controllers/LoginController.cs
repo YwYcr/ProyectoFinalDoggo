@@ -28,28 +28,30 @@ namespace ProyectoFinalDoggo.Controllers
                 }
                 else
                 {
+                    Session["Rol"] = userDetails.rol;
                     Session["Usuario"] = userDetails.usuario;
-                    return RedirectToAction("Menu", "Home");
+                    return RedirectToAction("Index", "Home");
                 }
             }
+            
         }
         public ActionResult Logout()
         {
             using (var db = new g5_ProyectoFinalDoggoEntities2())
             {
-                if (Session != null && Session["usuario"] != null)
+                /*if (Session != null && Session["usuario"] != null)
                 {
                     // Get the current user from the database
-                    var currentUser = db.Usuarios.FirstOrDefault(u => u.usuario == Session["usuario"].ToString());
+                    //var currentUser = db.Usuarios.FirstOrDefault(u => u.usuario == Session["usuario"].ToString());
 
                     // Clear the session
-                    Session.Clear();
+                    //Session.Clear();
 
                     // Save changes to the database
-                    db.SaveChanges();
-                }
+                    //db.SaveChanges();
+                }*/
 
-                // Redirect to the login page
+                Session.Clear();
                 return RedirectToAction("Index", "Login");
             }
         }

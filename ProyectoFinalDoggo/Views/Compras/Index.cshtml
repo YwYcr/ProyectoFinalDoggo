@@ -5,52 +5,68 @@
     Layout = "~/Views/Shared/DoggoLayout.cshtml";
 }
 
-<h2>Listado de compras</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.IDTrans)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Productos.nomProducto)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Productos.IDProd)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Usuarios.usuario)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.COSTO)
-        </th>
-        <th></th>
-    </tr>
+<div style="min-height: calc(100vh - 50px);">
+    <h2>Listado de compras</h2>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.IDTrans)
-        </td>
+    <table class="table">
+        <tr>
+            <th>
+                Numero de Transacción
+            </th>
+            <th>
+                Producto
+            </th>
+            <th>
+                ID Producto
+            </th>
+            <th>
+                Usuario
+            </th>
+            <th>
+                Costo
+            </th>
+            <th>Acciones</th>
+        </tr>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.Productos.nomProducto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Productos.IDProd)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Usuarios.usuario)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.COSTO)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id = item.IDTrans }) |
-            @Html.ActionLink("Detalles", "Details", new { id = item.IDTrans }) |
-            @Html.ActionLink("Eliminar", "Delete", new { id = item.IDTrans })
-        </td>
-    </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IDTrans)
+                </td>
 
-</table>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Productos.nomProducto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Productos.IDProd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Usuarios.usuario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.COSTO)
+                </td>
+                <td>
+                    @if (Session != null && Session["usuario"] != null && Session["rol"].ToString() == "admin")
+                    {
+                        <a href="@Url.Action("Edit", new { id = item.IDTrans })" title="Editar">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                    }
+                    <a href="@Url.Action("Details", new { id = item.IDTrans })" title="Detalles">
+                        <i class="fas fa-info-circle"></i>
+                    </a>
+                    @if (Session != null && Session["usuario"] != null && Session["rol"].ToString() == "admin")
+                    {
+                        <a href="@Url.Action("Delete", new { id = item.IDTrans })" title="Eliminar">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

@@ -4,15 +4,20 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/DoggoLayout.cshtml";
 }
-
 <h2>Productos</h2>
+<br />
+@if (Session != null && Session["usuario"] != null && Session["rol"].ToString() == "admin")
+{
+    <a href="@Url.Action("Create")" class="btn btn-primary">Crear nuevo</a>
+    <br />
+    <br />
+}
 
-<p>
-    @Html.ActionLink("Crear nuevo", "Create")
-</p>
+
 <table class="table">
     <tr>
-        <th>        
+        <th>
+            Imagen del Producto
         </th>
         <th>
             Nombre del Producto
@@ -24,51 +29,63 @@
             Categoria
         </th>
         <th>
-            Detalles 
+            Detalles
         </th>
         <th>
             Cantidad
         </th>
-        <th></th>
+        <th>
+            Acciones
+        </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            <img src="@item.imagen" alt="Imagen del Producto" width="200" height="150" />
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nomProducto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.precio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Categoria)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.detalles)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.cantidad)
-        </td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img src="@item.imagen" alt="Imagen del Producto" width="200" height="150" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nomProducto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categoria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.detalles)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cantidad)
+            </td>
 
 
-        <td>
-            <a href="@Url.Action("Edit", new { id = item.IDProd })" title="Editar">
-                <i class="fas fa-edit"></i>
-            </a>
-            <a href="@Url.Action("Details", new { id = item.IDProd })" title="Detalles">
-                <i class="fas fa-info-circle"></i>
-            </a>
-            <a href="@Url.Action("Delete", new { id = item.IDProd })" title="Eliminar" onclick="return confirm('¿Estás seguro de que deseas eliminar este producto?')">
-                <i class="fas fa-trash"></i>
-            </a>
-            <a href="@Url.Action("AddToCart", new { id = item.IDProd })" title="Agregar al carrito" onclick="return alert('Producto agregado al carrito')">
-                <i class="fas fa-cart-plus"></i> 
-            </a>
-        </td>
-    </tr>
-}
+            <td>
+                @if (Session != null && Session["usuario"] != null && Session["rol"].ToString() == "admin")
+                {
+                    <a href="@Url.Action("Edit", new { id = item.IDProd })" title="Editar">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                }
+                <a href="@Url.Action("Details", new { id = item.IDProd })" title="Detalles">
+                    <i class="fas fa-info-circle"></i>
+                </a>
+                @if (Session != null && Session["usuario"] != null && Session["rol"].ToString() == "admin")
+                {
+                    <a href="@Url.Action("Delete", new { id = item.IDProd })" title="Eliminar" onclick="return confirm('¿Estás seguro de que deseas eliminar este producto?')">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                }
+
+                <a href="@Url.Action("AddToCart", new { id = item.IDProd })" title="Agregar al carrito" onclick="return alert('Producto agregado al carrito')">
+                    <i class="fas fa-cart-plus"></i>
+                </a>
+            </td>
+        </tr>
+    }
 
 </table>
+
+

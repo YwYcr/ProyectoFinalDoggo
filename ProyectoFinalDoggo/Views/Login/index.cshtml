@@ -1,166 +1,186 @@
 ﻿@model ProyectoFinalDoggo.Models.Usuarios
     @{
         ViewBag.Title = "Login";
-        
+
     }
-
-
 
 <head>
     <meta name="viewport" content="width=device-width" />
     <link href="~/Content/Login-theme.css" rel="stylesheet" />
+
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Customize styles -->
+    <link href="~/fontawesome-free-6.4.0-web/fontawesome-free-6.4.0-web/css/all.min.css" rel="stylesheet" />
+    <script src="~/fontawesome-free-6.4.0-web/fontawesome-free-6.4.0-web/js/fontawesome.min.js"></script>
+
     <title>Login</title>
+    <style>
 
+        *{
+            color: black;
+        }
+
+    </style>
 </head>
-    <body>
+<body>
 
-        <h2>Login</h2>
-        <div id="login slide-up">
-            @using (Html.BeginForm("Autherize", "Login", FormMethod.Post))
-            {
-                <table>
-                    <tr>
-                        <td></td>
-                        <td>Doggo</td>
-                    </tr>
-                    <img src="~/images/Logo DOGGO (fondo negro).jpg" />
-                    <h2 class="form-title" id="login"><span></span>Inicio de Sesión</h2>
-                    <tr>
-                        <td>
-                            @Html.LabelFor(Model => Model.usuario)
-                        </td>
-                        <td>
-                            @Html.EditorFor(Model => Model.usuario)
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>@Html.ValidationMessageFor(Model => Model.usuario)</td>
-                    </tr>
-                    <tr>
-                        <td>@Html.LabelFor(Model => Model.pass)</td>
-                        <td>@Html.EditorFor(Model => Model.pass, new { htmlAttributes = new { type = "password" } })</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>@Html.ValidationMessageFor(Model => Model.pass)</td>
-                    </tr>
-                    <td colspan="2">
-                        <label class="field-validation-erorr">@Html.DisplayFor(Model => Model.LoginErrorMessage) </label>
-                    </td>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <button class="submit-btn">Ingresar</button>
+    <a href="@Url.Action("Index", "Home")" class="btn btn-dark text-white botonshadow" style=" position: absolute; top: 20px; right: 20px;">
+        <i class="fas fa-home" style="color:white"></i> Pagina Principal
+    </a>
+
+    <div id="login slide-up" class="logincontenido">
+        @using (Html.BeginForm("Autherize", "Login", FormMethod.Post))
+        {
+        <table>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+            <img src="~/images/Logo DOGGO (fondo negro).jpg" />
+            <h2 class="form-title" id="login"><span></span>Inicio de Sesión</h2>
+            <br />
+            <tr>
+                <td>
+                    Usuario
+                </td>
+                <td>
+                    @Html.EditorFor(Model => Model.usuario)
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>@Html.ValidationMessageFor(Model => Model.usuario)</td>
+            </tr>
+            <tr>
+                <td>Contraseña</td>
+                <td>@Html.EditorFor(Model => Model.pass, new { htmlAttributes = new { type = "password" } })</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>@Html.ValidationMessageFor(Model => Model.pass)</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label class="field-validation-error">
+                        @Html.DisplayFor(Model => Model.LoginErrorMessage)
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button class="submit-btn btn btn-success botonmax">Ingresar</button>
 
 
-                        </td>
-                    </tr>
-                </table>
+                </td>
+            </tr>
+        </table>
             }
-            <button class="submit-btn" onclick="location.href='@Url.Action("Create", "Usuarios")'">Registrate</button>
+            <br /><br />
+            <button class="submit-btn btn btn-primary float-right botonmax" onclick="location.href='@Url.Action("Create", "Usuarios")'">Registrate</button>
         </div>
         <script src="~/Scripts/jquery-3.4.1.min.js"></script>
         <script src="~/Scripts/jquery.validate.min.js"></script>
         <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     </body>
 
-@*@model ProyectoFinalDoggo.Models.Usuarios
-@{
-    ViewBag.Title = "Login";
-    //Layout = "~/Views/Shared/LoginView.cshtml";
-}
+    @*@model ProyectoFinalDoggo.Models.Usuarios
+    @{
+        ViewBag.Title = "Login";
+        //Layout = "~/Views/Shared/LoginView.cshtml";
+    }
 
 
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #b7916e;
-        }
-
-        .form-control {
-            border-radius: 0;
-            border: none;
-            
-        }
-
-            .form-control:focus {
-                box-shadow: none
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title</title>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            body {
+                background-color: #b7916e;
             }
 
-        .btn-primary {
-            background-color: #a37a35;
-            border: none;
-            border-radius: 0;
-        }
+            .form-control {
+                border-radius: 0;
+                border: none;
 
-            .btn-primary:hover {
-                background-color: #865f27;
             }
 
-        label {
-            font-weight: bold;
-            color: #7e624d;
-        }
+                .form-control:focus {
+                    box-shadow: none
+                }
 
-        .error {
-            color: #dc3545;
-        }
+            .btn-primary {
+                background-color: #a37a35;
+                border: none;
+                border-radius: 0;
+            }
 
-        .table td {
-            border: none;
-        }
-    </style>
-</head>
-<body>
+                .btn-primary:hover {
+                    background-color: #865f27;
+                }
 
-    <div class="container my-5">
-        <div class="row justify-content-center">
-            <div class="col-md-5">
-                <img src="~/images/Logo DOGGO (fondo negro).jpg"/>
-                <div id="login slide-up">
-                    @using (Html.BeginForm("Autherize", "Login", FormMethod.Post))
-                    {
-                        <table class="table">
-                            <tr>
-                                <td></td>
-                                <h2>Ingresar</h2>
-                            </tr>
-                            <tr>
-                                <td>@Html.LabelFor(Model => Model.usuario)</td>
-                                <td>@Html.EditorFor(Model => Model.usuario, new { @class = "form-control" })</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>@Html.ValidationMessageFor(Model => Model.usuario, "", new { @class = "error" })</td>
-                            </tr>
-                            <tr>
-                                <td>@Html.LabelFor(Model => Model.pass)</td>
-                                <td>@Html.EditorFor(Model => Model.pass, new { @class = "form-control" })</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>@Html.ValidationMessageFor(Model => Model.pass, "", new { @class = "error" })</td>
-                            </tr>
-                            <tr>
-                                <td colspan="2">
-                                    <label class="field-validation-erorr">@Html.DisplayFor(Model => Model.LoginErrorMessage) </label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>
-                                    <button class="btn btn-primary btn-block">Ingresar</button>
-                                </td>
-                            </tr>
-                        </table>
-                    }
+            label {
+                font-weight: bold;
+                color: #7e624d;
+            }
+
+            .error {
+                color: #dc3545;
+            }
+
+            .table td {
+                border: none;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div class="container my-5">
+            <div class="row justify-content-center">
+                <div class="col-md-5">
+                    <img src="~/images/Logo DOGGO (fondo negro).jpg"/>
+                    <div id="login slide-up">
+                        @using (Html.BeginForm("Autherize", "Login", FormMethod.Post))
+                        {
+                            <table class="table">
+                                <tr>
+                                    <td></td>
+                                    <h2>Ingresar</h2>
+                                </tr>
+                                <tr>
+                                    <td>@Html.LabelFor(Model => Model.usuario)</td>
+                                    <td>@Html.EditorFor(Model => Model.usuario, new { @class = "form-control" })</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>@Html.ValidationMessageFor(Model => Model.usuario, "", new { @class = "error" })</td>
+                                </tr>
+                                <tr>
+                                    <td>@Html.LabelFor(Model => Model.pass)</td>
+                                    <td>@Html.EditorFor(Model => Model.pass, new { @class = "form-control" })</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>@Html.ValidationMessageFor(Model => Model.pass, "", new { @class = "error" })</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <label class="field-validation-erorr">@Html.DisplayFor(Model => Model.LoginErrorMessage) </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <button class="btn btn-primary btn-block">Ingresar</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        }
+                    </div>
                 </div>
-            </div>
-</body>*@
+    </body>*@

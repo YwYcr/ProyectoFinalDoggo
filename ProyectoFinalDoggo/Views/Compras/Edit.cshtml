@@ -11,7 +11,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>compras</h4>
         <hr />
@@ -19,7 +19,7 @@
         @Html.HiddenFor(model => model.IDTrans)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IDProd, "IDProd", htmlAttributes: new { @class = "control-label col-md-2" })
+            ID Producto
             <div class="col-md-10">
                 @Html.DropDownList("IDProd", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.IDProd, "", new { @class = "text-danger" })
@@ -27,7 +27,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.usuario, "usuario", htmlAttributes: new { @class = "control-label col-md-2" })
+            Usuario
             <div class="col-md-10">
                 @Html.DropDownList("usuario", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.usuario, "", new { @class = "text-danger" })
@@ -35,7 +35,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.COSTO, htmlAttributes: new { @class = "control-label col-md-2" })
+            Costo
             <div class="col-md-10">
                 @Html.EditorFor(model => model.COSTO, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.COSTO, "", new { @class = "text-danger" })
@@ -44,15 +44,23 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                @if (Session != null && Session["usuario"] != null && Session["rol"].ToString() == "admin")
+                {
+                    <div class="text-center">
+                        <input type="submit" value="Guadar" class="btn btn-primary" />
+                    </div>
+                }
             </div>
         </div>
     </div>
-}
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+}
+@if (Session != null && Session["usuario"] != null && Session["rol"].ToString() == "admin")
+{
+    <div>
+        <a href="@Url.Action("Index")" class="btn btn-dark bottom-right">Volver</a>
+    </div>
+}
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

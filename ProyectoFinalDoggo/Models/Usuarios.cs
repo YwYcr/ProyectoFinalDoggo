@@ -25,14 +25,21 @@ namespace ProyectoFinalDoggo.Models
             this.compras = new HashSet<compras>();
             this.carrito = new HashSet<carrito>();
         }
-    
+        [Required(ErrorMessage = "El campo de Usuario es requerido.")]
         public string usuario { get; set; }
+        [Required(ErrorMessage = "Contraseña es requerido.")]
         public string pass { get; set; }
+        [Required(ErrorMessage = "El campo de Correo es requerido.")]
         public string correo { get; set; }
+        [Required(ErrorMessage = "El campo de Dirección es requerido.")]
         public string direccion { get; set; }
+        [Required(ErrorMessage = "El campo de Teléfono es requerido.")]
         public string telefono { get; set; }
+        [Required(ErrorMessage = "El campo de Rol es requerido.")]
         public string rol { get; set; }
+        [Required(ErrorMessage = "El Nombre es requerido.")]
         public string nombre { get; set; }
+        [Required(ErrorMessage = "El Apellido es requerido.")]
         public string apellido { get; set; }
         public string LoginErrorMessage { get; set; }
 

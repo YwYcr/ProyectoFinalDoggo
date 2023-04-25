@@ -12,23 +12,14 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.pass)
+            Correo:
         </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.pass)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.correo)
-        </dt>
-
         <dd>
             @Html.DisplayFor(model => model.correo)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.direccion)
+            Dirección:
         </dt>
 
         <dd>
@@ -36,7 +27,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.telefono)
+            Teléfono:
         </dt>
 
         <dd>
@@ -44,7 +35,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.rol)
+            Rol:
         </dt>
 
         <dd>
@@ -52,7 +43,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.nombre)
+            Nombre:
         </dt>
 
         <dd>
@@ -60,7 +51,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.apellido)
+            Apellido:
         </dt>
 
         <dd>
@@ -69,7 +60,12 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.usuario }) |
-    @Html.ActionLink("Volver", "Index")
-</p>
+
+<div class="text-center">
+    @Html.ActionLink("Editar", "Edit", new { id = Model.usuario }, new { @class = "btn btn-primary" })
+</div>
+
+    <div>
+        <a href="@Url.Action("Index")" class="btn btn-dark bottom-right">Volver</a>
+    </div>
+

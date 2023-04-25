@@ -17,8 +17,6 @@
 
 <body class="d-flex flex-column min-vh-100 body">
 
-
-
     <div class="container">
         <h1 class="title">¡Contáctanos! <span class="auto-type"></span></h1>
         <script src="https://unpkg.com/typed.js@2.0.14/dist/typed.umd.js"></script>
@@ -66,35 +64,48 @@
                 <label>Mensaje</label>
                 <textarea rows="5">Su mensaje</textarea>
                 <div class="button"></div>
-                <button type="submit" onclick='alert("Todos los campos son requeridos") ' return enviarFormulario()>Enviar</button>
+                <button class="btn btn-primary" type="submit" onclick='alert("Todos los campos son requeridos") ' return enviarFormulario()>Enviar</button>
                 <p class="form_message" id="form_message">El formulario se ha enviado adecuadamente</p>
+            </form>
         </div>
         <div class="form_error" id="form_error">
             <p><b>Error: </b>Debe completar todos los espacios</p>
         </div>
-        </form>
-    </div>
-    <div class="contact-right">
-        <h3>Es nuestro placer ayudarle</h3>
-        <table>
-            <tr>
-                <td>Correo</td>
-                <td>administracion@doggocr.com</td>
-            </tr>
-            <tr>
-                <td>Telefono</td>
-                <td>+506 22405087</td>
-            </tr>
-            <tr>
-                <td>Direccion</td>
-                <td>Santo Domingo de Heredia</td>
-                <p><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7858.903100375176!2d-84.09087625!3d9.97950835!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0e4df6228a17f%3A0x5ca5b93dc967e9d0!2sHeredia%2C%20Santo%20Domingo!5e0!3m2!1ses!2scr!4v1681678203931!5m2!1ses!2scr" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></p>
 
-            </tr>
-        </table>
     </div>
+    <div class="contact-right" style="margin-right: 50px; margin-left: 50px;">
+        <h3>Es nuestro placer ayudarle</h3>
+        <div style="display: grid;">
+            <table>
+                <tr>
+                    <td style="vertical-align: top;">
+                        <table>
+                            <tr>
+                                <td>Correo</td>
+                                <td>administracion@doggocr.com</td>
+                            </tr>
+                            <tr>
+                                <td>Telefono</td>
+                                <td>+506 22405087</td>
+                            </tr>
+                            <tr>
+                                <td>Direccion</td>
+                                <td>Santo Domingo de Heredia</td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td></td>
+                    <td style="text-align: right;">
+                        <p><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7858.903100375176!2d-84.09087625!3d9.97950835!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0e4df6228a17f%3A0x5ca5b93dc967e9d0!2sHeredia%2C%20Santo%20Domingo!5e0!3m2!1ses!2scr!4v1681678203931!5m2!1ses!2scr" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></p>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+        
     </div>
-   
+
+
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
