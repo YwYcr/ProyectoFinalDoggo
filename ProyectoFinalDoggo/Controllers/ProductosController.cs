@@ -44,11 +44,58 @@ namespace ProyectoFinalDoggo.Controllers
             return RedirectToAction("Index", "Productos");
         }
 
+        public ActionResult deleteItemCarrito(int id)
+        {
+            {
+                List<Productos> listaCart = Session["cart"] as List<Productos>;
+
+                // Buscar el producto en la lista del carrito por su ID
+                Productos prod = listaCart.FirstOrDefault(p => p.IDProd == id);
+
+                if (prod != null)
+                {
+                    // Si se encuentra el producto, eliminarlo de la lista
+                    listaCart.Remove(prod);
+
+                    // Actualizar la sesión con la lista de productos modificada
+                    Session["cart"] = listaCart;
+                }
+
+                // Redirigir a la acción "Carrito" para mostrar el carrito actualizado
+                return RedirectToAction("Carrito");
+            }
+        }
+
+
         public ActionResult Carrito()
         {
             List<Productos> listaCart = Session["cart"] as List<Productos>;       
             // Pasar la lista de productos en el carrito como modelo a la vista
             return View(listaCart);
+        }
+
+        [HttpPost]
+        public ActionResult modificarCantidad(int id, int cantidad)
+        {
+            List<Productos> listaCart = Session["cart"] as List<Productos>;
+            if (listaCart != null)
+            {
+                // Buscar el producto en la lista del carrito por su ID
+                Productos producto = listaCart.FirstOrDefault(p => p.IDProd == id);
+
+                if (producto != null)
+                {
+                    // Modificar la cantidad del producto en el carrito
+                    producto.cantidad = producto.cantidad;
+
+                    // Actualizar la sesión con la lista de productos modificada
+                    Session["cart"] = listaCart;
+
+                    // Redirigir a la acción "Carrito" para mostrar la vista del carrito actualizada
+                    return RedirectToAction("Carrito");
+                }
+            }
+            return RedirectToAction("Carrito");
         }
 
 
