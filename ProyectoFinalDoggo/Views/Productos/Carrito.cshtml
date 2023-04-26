@@ -8,20 +8,20 @@
 <h2>Carrito</h2>
 
 
+@if (Session != null && Session["cart"] != null)
+{
+    <table class="table">
 
-<table class="table">
+
+        <tr>
+            <th>Imagen del producto</th>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Acciones</th>
+        </tr>
 
 
-    <tr>
-        <th>Imagen del producto</th>
-        <th>Producto</th>
-        <th>Cantidad</th>
-        <th>Acciones</th>
-    </tr>
-
-    @if (Session != null && Session["cart"] != null)
-    {
-        foreach (var prod in Model)
+        @foreach (var prod in Model)
         {
             <tr>
                 <td>
@@ -44,15 +44,38 @@
             </tr>
 
         }
-
-    }
-    else
-    {
-        <p>No hay productos</p>
-    }
-
-
-</table>
+    </table>
+}
+else
+{
+    <br />
+    <div style="display: grid; justify-content: left;">
+        <div class="alert alert-light" role="alert">
+            <h5>No hay productos en el carrito, ver el <a href="@Url.Action("Index", "Productos")" class="alert-link">listado de productos</a> para agregar productos al carrito.</h5>
+        </div>
+    </div>
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Alerta</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-danger d-flex align-items-center" role="alert">
+                            <div>
+                                <h4>El carrito esta vacío</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
 
 <script>
     function actualizarCantidad(url, IDProd) {
@@ -60,10 +83,16 @@
         window.location.href = url + "?id=" + IDProd + "&cantidad=" + cantidad; // Redirige a la URL del enlace con los parámetros actualizados
     }
 </script>
+<script>
+    $(document).ready(function () {
+        $("#staticBackdrop").modal("show");
+    });
+</script>
+
 
 @if (Session != null && Session["cart"] != null)
 {
-    <a href="@Url.Action("confirmarCompra")" class="btn btn-primary">Confirmar Compra</a>
+    <a href="@Url.Action("confirmarCompra")" class="btn btn-primary" title="Confirmacion de compra" onclick="return alert('Confirmacion de compra. \n\n\n Gracias por su compra')">Confirmar Compra</a>
     <a href="@Url.Action("limpiarCarrito")" class="btn btn-primary">Limpiar Carrito</a>
 }
 

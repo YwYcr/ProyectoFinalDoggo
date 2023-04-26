@@ -87,24 +87,28 @@ namespace ProyectoFinalDoggo.Controllers
 
         public ActionResult confirmarCompra()
         {
-            List<Productos> listaCart = Session["cart"] as List<Productos>;
-            if (listaCart != null)
-            {
-                // Si el carrito existe, limpiarlo
-                listaCart.Clear();
-            }
+            /* List<Productos> listaCart = Session["cart"] as List<Productos>;
+             if (listaCart != null)
+             {
+                 // Si el carrito existe, limpiarlo
+                 listaCart.Clear();
+             }*/
+
+            Session.Remove("cart");
 
             return RedirectToAction("Carrito");
         }
 
         public ActionResult limpiarCarrito()
         {
-            List<Productos> listaCart = Session["cart"] as List<Productos>;
-            if (listaCart != null)
-            {
-                // Si el carrito existe, limpiarlo
-                listaCart.Clear();
-            }
+            /* List<Productos> listaCart = Session["cart"] as List<Productos>;
+              if (listaCart != null)
+              {
+                  // Si el carrito existe, limpiarlo
+                  listaCart.Clear();
+              }*/
+
+            Session.Remove("cart");
 
             return RedirectToAction("Carrito");
         }
