@@ -42,13 +42,17 @@
                         </li>
                         <li class="nav-item">
                             <h5>@Html.ActionLink("Contactanos", "Index", "Contact", null, new { @class = "nav-item nav-link active btn btn-link", style = "color: white;" })</h5>
-                        </li>
+                        </li>                       
+                        <li class="nav-item">
+                            <h5>@Html.ActionLink("Carrito", "Carrito", "Productos", null, new { @class = "nav-item nav-link active btn btn-link", style = "color: white;" })</h5>
+                        </li>                        
                         if (Session != null && Session["usuario"] != null && Session["rol"].ToString() == "admin")
                         {
                             <li class="nav-item">
                                 <h5>@Html.ActionLink("Usuarios", "Index", "Usuarios", null, new { @class = "nav-item nav-link active btn btn-link", style = "color: white;" })</h5>
                             </li>
                         }
+
                     }
                     else
                     {

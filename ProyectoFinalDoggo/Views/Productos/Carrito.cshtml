@@ -18,39 +18,40 @@
         <th>Cantidad</th>
         <th>Acciones</th>
     </tr>
-    @foreach (var prod in Model)
+
+    @if (Session != null && Session["cart"] != null)
     {
-        <tr>
-            <td>
-                <img src="@prod.imagen" alt="Imagen del Producto" width="200" height="150" />
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => prod.nomProducto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => prod.cantidad)
-            </td>
-            <td>
-                @Html.TextBoxFor(modelItem => prod.cantidad, new { @class = "form-control", type = "number", min = "1", max = "100", id = "cantidad_" + prod.IDProd })
-                <a href="javascript:void(0);" class="btn btn-primary" onclick="actualizarCantidad('@Url.Action("modificarCantidad", "Productos", new { id = prod.IDProd })', '@prod.IDProd')">Actualizar</a> <!-- Llama a la función JavaScript actualizarCantidad con la URL del enlace y el ID del producto -->
-                @*<a href="@Url.Action("Carrito", "Productos", new { id = prod.IDProd, cantidad = prod.cantidad })" class="btn btn-primary">Actualizar</a>*@
+        foreach (var prod in Model)
+        {
+            <tr>
+                <td>
+                    <img src="@prod.imagen" alt="Imagen del Producto" width="200" height="150" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => prod.nomProducto)
+                </td>
+                <td>
+                    @Html.TextBoxFor(modelItem => prod.cantidad, new { @class = "form-control", type = "number", min = "1", max = "10", id = "cantidad_" + prod.IDProd })
+                    <a href="javascript:void(0);" class="btn btn-primary"
+                       onclick="actualizarCantidad('@Url.Action("modificarCantidad")', '@prod.IDProd')">Actualizar</a>
+                </td>
+                <td>
+                    <a href="@Url.Action("deleteItemCarrito", new { id = prod.IDProd })" title="Eliminar" onclick="return confirm('¿Estás seguro de que deseas eliminar este producto?')">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </td>
 
+            </tr>
 
-            </td>
-            <td>
-                <a href="@Url.Action("modificarCantidad", new { id = prod.IDProd })">
-                    <i class="fas fa-edit"></i>
-                </a>
-            </td>
-            <td>
-                <a href="@Url.Action("deleteItemCarrito", new { id = prod.IDProd })" title="Eliminar" onclick="return confirm('¿Estás seguro de que deseas eliminar este producto?')">
-                    <i class="fas fa-trash"></i>
-                </a>
-            </td>
-
-        </tr>
+        }
 
     }
+    else
+    {
+        <p>No hay productos</p>
+    }
+
+
 </table>
 
 <script>
@@ -60,8 +61,11 @@
     }
 </script>
 
-<a href="@Url.Action("ConfirmarCompra")" class="btn btn-primary">Confirmar Compra</a>
-<a href="@Url.Action("eliminarCarrito")" class="btn btn-primary">Limpiar Carrito</a>
+@if (Session != null && Session["cart"] != null)
+{
+    <a href="@Url.Action("confirmarCompra")" class="btn btn-primary">Confirmar Compra</a>
+    <a href="@Url.Action("limpiarCarrito")" class="btn btn-primary">Limpiar Carrito</a>
+}
 
 
 

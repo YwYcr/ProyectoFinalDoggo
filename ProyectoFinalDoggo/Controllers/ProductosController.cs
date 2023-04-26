@@ -26,6 +26,25 @@ namespace ProyectoFinalDoggo.Controllers
             return View(db.Productos.ToList());
         }
 
+
+
+        public ActionResult modificarCantidad(int id, int cantidad)
+        {
+            List<Productos> listaCart = Session["cart"] as List<Productos>;
+            if (listaCart != null)
+            {         
+                Productos producto = listaCart.FirstOrDefault(p => p.IDProd == id);
+                if (producto != null)
+                {                  
+                    producto.cantidad = cantidad;                  
+                    Session["cart"] = listaCart;
+                    return RedirectToAction("Carrito");
+                }
+            }
+            return RedirectToAction("Carrito");
+        }
+
+
         public ActionResult AddToCart(int id)
         {
 
@@ -66,38 +85,37 @@ namespace ProyectoFinalDoggo.Controllers
             }
         }
 
-
-        public ActionResult Carrito()
-        {
-            List<Productos> listaCart = Session["cart"] as List<Productos>;       
-            // Pasar la lista de productos en el carrito como modelo a la vista
-            return View(listaCart);
-        }
-
-        [HttpPost]
-        public ActionResult modificarCantidad(int id, int cantidad)
+        public ActionResult confirmarCompra()
         {
             List<Productos> listaCart = Session["cart"] as List<Productos>;
             if (listaCart != null)
             {
-                // Buscar el producto en la lista del carrito por su ID
-                Productos producto = listaCart.FirstOrDefault(p => p.IDProd == id);
-
-                if (producto != null)
-                {
-                    // Modificar la cantidad del producto en el carrito
-                    producto.cantidad = producto.cantidad;
-
-                    // Actualizar la sesión con la lista de productos modificada
-                    Session["cart"] = listaCart;
-
-                    // Redirigir a la acción "Carrito" para mostrar la vista del carrito actualizada
-                    return RedirectToAction("Carrito");
-                }
+                // Si el carrito existe, limpiarlo
+                listaCart.Clear();
             }
+
             return RedirectToAction("Carrito");
         }
 
+        public ActionResult limpiarCarrito()
+        {
+            List<Productos> listaCart = Session["cart"] as List<Productos>;
+            if (listaCart != null)
+            {
+                // Si el carrito existe, limpiarlo
+                listaCart.Clear();
+            }
+
+            return RedirectToAction("Carrito");
+        }
+
+
+        public ActionResult Carrito()
+        {
+            List<Productos> listaCart = Session["cart"] as List<Productos>;       
+            
+            return View(listaCart);
+        }
 
         // GET: Productos/Details/5
         public ActionResult Details(int? id)
